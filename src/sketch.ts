@@ -4,6 +4,10 @@ let music: {
   mystery: p5.SoundFile;
 };
 
+let images: {
+  pig: p5.Image;
+};
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -12,6 +16,10 @@ let music: {
 function preload() {
   music = {
     mystery: loadSound("/assets/music/mystery.mp3"),
+  };
+
+  images = {
+    pig: loadImage("/assets/image/pig.png"),
   };
 }
 

@@ -8,6 +8,14 @@ class Level1 {
     strokeWeight(2);
 
     fill(255);
+    // bilder pig
+    image(images.pig, 938, height - 220 - 40, 40, 40);
+
+    image(images.pig, 1038, height - 220 - 40, 40, 40);
+
+    image(images.pig, 1138, height - 320 - 40, 40, 40);
+
+    image(images.pig, 938, height - 432 - 40, 40, 40);
 
     // stolpar
     rect(900, height - 220, 12, 220);
