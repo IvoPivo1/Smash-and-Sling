@@ -18,10 +18,10 @@ class Player {
   private move() {
     if (keyIsDown(LEFT_ARROW)) {
       this.position.x -= 5;
-    }else if (keyIsDown(RIGHT_ARROW)) {
+    } else if (keyIsDown(RIGHT_ARROW)) {
       this.position.x += 5;
-    } else{
-        this.velocity.x = 0;
+    } else {
+      this.velocity.x = 0;
     }
 
     if (keyIsDown(32) && this.position.y >= height - 100) {
@@ -29,12 +29,11 @@ class Player {
     }
   }
 
-
   private updatePosition() {
     this.position.add(this.velocity);
-    if (this.position.y > height -100) {
+    if (this.position.y > height - 100) {
       this.velocity.y = 0;
-      this.position.y = height -100;
+      this.position.y = height - 100;
     }
   }
 

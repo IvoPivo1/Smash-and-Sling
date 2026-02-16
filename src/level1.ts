@@ -8,8 +8,14 @@ class Level1 {
     fill(255);
     noStroke();
 
-    // En vit pinne som står på marken
-    rect(900, height - 250, 12, 250);
+    // Pinne
+    rect(900, height - 220, 12, 220);
+
+    rect(1000, height - 220, 12, 220);
+
+    rect(1100, height - 320, 12, 320);
+
+    rect(1200, height - 420, 12, 420);
 
     pop();
   }
