@@ -8,11 +8,10 @@ class Game {
   public update() {
     this.player.update();
   }
-    
 
   public draw() {
-    background(0);
+    background(135, 206, 235);
+
     this.player.draw();
   }
-
 }
