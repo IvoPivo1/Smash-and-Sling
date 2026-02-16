@@ -1,21 +1,33 @@
 class Level1 {
-  //  körs varje frame
   public update() {}
 
   // ritar banan varje frame
   public draw() {
     push();
-    fill(255);
-    noStroke();
+    stroke(0);
+    strokeWeight(2);
 
-    // Pinne
+    fill(255);
+
+    // stolpar
     rect(900, height - 220, 12, 220);
 
     rect(1000, height - 220, 12, 220);
 
     rect(1100, height - 320, 12, 320);
 
-    rect(1200, height - 420, 12, 420);
+    rect(1200, height - 320, 12, 320);
+
+    // top pinnar
+    rect(900, height - 220, 212, 12);
+    rect(1100, height - 320, 112, 12);
+
+    // andra våningen stolpar
+    rect(900, height - 210 - 12 - 210, 12, 210);
+    rect(1000, height - 210 - 12 - 210, 12, 210);
+
+    // andra våningen top pinne
+    rect(900, height - 210 - 12 - 210, 112, 12);
 
     pop();
   }
