@@ -8,6 +8,10 @@ let images: {
   pig: p5.Image;
 };
 
+  birdImg: p5.Image;
+};
+
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -20,6 +24,8 @@ function preload() {
 
   images = {
     pig: loadImage("/assets/image/pig.png"),
+  images = {
+    birdImg: loadImage("/assets/images/bird.png"),
   };
 }
 
@@ -53,3 +59,19 @@ function draw() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+
+/**
+ * Built in mousePressed function in P5
+ */
+function mousePressed() {
+  game.mousePressed();
+}
+
+function mouseDragged() {
+  game.mouseDragged();
+}
+
+function mouseReleased() {
+  game.mouseReleased();
+}
+
