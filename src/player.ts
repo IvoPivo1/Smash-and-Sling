@@ -1,8 +1,7 @@
-
 class Player {
   position: p5.Vector;
   velocity: p5.Vector;
-  radius: number = 35; 
+  radius: number = 35;
 
   private gravity: number = 0.4;
   private dragDamping: number = 0.98;
@@ -55,7 +54,7 @@ class Player {
     this.isDragging = false;
     this.isLaunched = true;
 
-    // Here you can adjust the speed of the bird 
+    // Here you can adjust the speed of the bird
     const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.45);
     this.velocity.add(force);
   }
@@ -73,12 +72,7 @@ class Player {
     if (this.isDragging) {
       stroke(60, 40, 20);
       strokeWeight(6);
-      line(
-        this.startPos.x,
-        this.startPos.y,
-        this.position.x,
-        this.position.y
-      );
+      line(this.startPos.x, this.startPos.y, this.position.x, this.position.y);
     }
 
     // Draw the bird sprite
@@ -88,7 +82,7 @@ class Player {
       this.position.x,
       this.position.y,
       this.radius * 2,
-      this.radius * 2
+      this.radius * 2,
     );
   }
 

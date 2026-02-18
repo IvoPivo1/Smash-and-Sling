@@ -1,16 +1,14 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game;
+
 let music: {
   mystery: p5.SoundFile;
 };
 
 let images: {
   pig: p5.Image;
-};
-
   birdImg: p5.Image;
 };
-
 
 /**
  * Built in preload function in P5
@@ -23,9 +21,8 @@ function preload() {
   };
 
   images = {
-    pig: loadImage("/assets/image/pig.png"),
-  images = {
     birdImg: loadImage("/assets/images/bird.png"),
+    pig: loadImage("/assets/images/pig.png"),
   };
 }
 
@@ -43,26 +40,15 @@ function setup() {
   game = new Game();
 }
 
-/**
- * Built in draw function in P5
- * This is a good place to call public methods of the object
- * you created in the setup function above
- */
 function draw() {
   game.update();
   game.draw();
 }
 
-/**
- *  Built in windowResize listener function in P5
- */
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-/**
- * Built in mousePressed function in P5
- */
 function mousePressed() {
   game.mousePressed();
 }
@@ -74,4 +60,3 @@ function mouseDragged() {
 function mouseReleased() {
   game.mouseReleased();
 }
-
