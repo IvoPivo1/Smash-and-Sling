@@ -5,6 +5,9 @@ let music: {
 };
 
 let images: {
+  pig: p5.Image;
+};
+
   birdImg: p5.Image;
 };
 
@@ -18,6 +21,9 @@ function preload() {
   music = {
     mystery: loadSound("/assets/music/mystery.mp3"),
   };
+
+  images = {
+    pig: loadImage("/assets/image/pig.png"),
   images = {
     birdImg: loadImage("/assets/images/bird.png"),
   };
