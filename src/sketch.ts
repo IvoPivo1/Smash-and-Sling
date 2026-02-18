@@ -4,6 +4,11 @@ let music: {
   mystery: p5.SoundFile;
 };
 
+let images: {
+  birdImg: p5.Image;
+};
+
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -12,6 +17,9 @@ let music: {
 function preload() {
   music = {
     mystery: loadSound("/assets/music/mystery.mp3"),
+  };
+  images = {
+    birdImg: loadImage("/assets/images/bird.png"),
   };
 }
 
@@ -45,3 +53,19 @@ function draw() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+
+/**
+ * Built in mousePressed function in P5
+ */
+function mousePressed() {
+  game.mousePressed();
+}
+
+function mouseDragged() {
+  game.mouseDragged();
+}
+
+function mouseReleased() {
+  game.mouseReleased();
+}
+

@@ -5,14 +5,23 @@ class Game {
     this.player = new Player();
   }
 
-  public update() {
+  update() {
     this.player.update();
   }
     
 
-  public draw() {
+  draw() {
     background(0);
     this.player.draw();
   }
 
+  mousePressed() {
+    this.player.mousePressed();
+  }
+  mouseDragged() {
+    this.player.mouseDragged();
+  }
+  mouseReleased() {
+    this.player.mouseReleased();
+  }
 }
