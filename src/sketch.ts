@@ -6,8 +6,8 @@ let music: {
 
 let images: {
   birdImg: p5.Image;
+  restartImg: p5.Image;
 };
-
 
 /**
  * Built in preload function in P5
@@ -20,6 +20,7 @@ function preload() {
   };
   images = {
     birdImg: loadImage("/assets/images/bird.png"),
+    restartImg: loadImage("/assets/images/restart.png"),
   };
 }
 
@@ -68,4 +69,3 @@ function mouseDragged() {
 function mouseReleased() {
   game.mouseReleased();
 }
-

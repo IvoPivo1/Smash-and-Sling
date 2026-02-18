@@ -8,7 +8,6 @@ class Game {
   update() {
     this.player.update();
   }
-    
 
   draw() {
     background(0);
