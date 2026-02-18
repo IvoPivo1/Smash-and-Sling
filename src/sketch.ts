@@ -19,7 +19,7 @@ function preload() {
   };
 
   images = {
-    pig: loadImage("/assets/image/pig.png"),
+    pig: loadImage("/assets/images/pig.png"),
   };
 }
 

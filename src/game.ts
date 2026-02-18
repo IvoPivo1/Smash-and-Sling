@@ -1,16 +1,16 @@
 class Game {
-  private level1: Level1;
+  private level: Level;
 
   constructor() {
-    this.level1 = new Level1();
+    this.level = new Level();
   }
 
   public update() {
-    this.level1.update();
+    this.level.update();
   }
 
   public draw() {
     background(135, 206, 235);
-    this.level1.draw();
+    this.level.draw();
   }
 }
