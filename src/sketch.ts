@@ -1,5 +1,7 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game;
+let gameOverScreen: GameOver;
+let gameIsOver: false;
 
 let music: {
   mystery: p5.SoundFile;
@@ -9,8 +11,8 @@ let images: {
   pig: p5.Image;
   birdImg: p5.Image;
   levelbg: p5.Image;
+  restart: p5.Image;
 };
-
 
 /**
  * Built in preload function in P5
@@ -26,6 +28,7 @@ function preload() {
     birdImg: loadImage("/assets/images/bird.png"),
     pig: loadImage("/assets/images/pig.png"),
     levelbg: loadImage("/assets/images/levelbg.jpg"),
+    restart: loadImage("/assets/images/restart.png"),
   };
 }
 
@@ -41,11 +44,17 @@ function setup() {
   music.mystery.setVolume(0.8);
 
   game = new Game();
+  gameOverScreen = new GameOver();
 }
 
 function draw() {
-  game.update();
-  game.draw();
+  background(0);
+  if (gameIsOver) {
+    gameOverScreen.draw();
+  } else {
+    game.update();
+    game.draw();
+  }
 }
 
 function windowResized() {
@@ -54,6 +63,14 @@ function windowResized() {
 
 function mousePressed() {
   game.mousePressed();
+  if (gameIsOver && gameOverScreen.isClicked(mouseX, mouseY)) {
+    restartGame();
+  }
+}
+
+function restartGame() {
+  gameIsOver = false;
+  game = new Game();
 }
 
 function mouseDragged() {
