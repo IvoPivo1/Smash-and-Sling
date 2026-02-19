@@ -17,7 +17,7 @@ class Player {
   constructor() {
     this.sprite = images.birdImg;
 
-    this.startPos = createVector(200, height - 150);
+    this.startPos = createVector(272, height - 250);
     this.position = this.startPos.copy();
     this.dragPos = this.startPos.copy();
     this.velocity = createVector(0, 0);

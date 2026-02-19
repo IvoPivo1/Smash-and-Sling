@@ -8,7 +8,9 @@ let music: {
 let images: {
   pig: p5.Image;
   birdImg: p5.Image;
+  levelbg: p5.Image;
 };
+
 
 /**
  * Built in preload function in P5
@@ -23,6 +25,7 @@ function preload() {
   images = {
     birdImg: loadImage("/assets/images/bird.png"),
     pig: loadImage("/assets/images/pig.png"),
+    levelbg: loadImage("/assets/images/levelbg.jpg"),
   };
 }
 
