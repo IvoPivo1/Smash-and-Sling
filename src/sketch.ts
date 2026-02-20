@@ -51,15 +51,3 @@ function draw() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
-
-function mousePressed() {
-  game.mousePressed();
-}
-
-function mouseDragged() {
-  game.mouseDragged();
-}
-
-function mouseReleased() {
-  game.mouseReleased();
-}
