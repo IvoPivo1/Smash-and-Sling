@@ -1,69 +1,77 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game;
+
 let music: {
   mystery: p5.SoundFile;
 };
-let images: { 
+
+let images: {
   slingshot: p5.Image;
   pink: p5.Image;
   logo: p5.Image;
   logo2: p5.Image;
   block: p5.Image;
+  pig: p5.Image;
+  birdImg: p5.Image;
+  levelbg: p5.Image;
 };
+
 let musicOn: boolean = true;
 let soundOn: boolean = true;
 
 /**
-* Built in preload function in P5
-* This is a good place to load assets such as
-* sound files, images etc...
-*/
+ * Built in preload function in P5
+ * This is a good place to load assets such as
+ * sound files, images etc...
+ */
 function preload() {
   music = {
     mystery: loadSound("/assets/music/mystery.mp3"),
   };
-  
+
   images = {
     slingshot: loadImage("/assets/images/slingshot.png"),
     pink: loadImage("/assets/images/pink.png"),
     logo: loadImage("/assets/images/logo.png"),
     logo2: loadImage("/assets/images/logo2.png"),
     block: loadImage("/assets/images/block.png"),
-  }
+    birdImg: loadImage("/assets/images/bird.png"),
+    pig: loadImage("/assets/images/pig.png"),
+    levelbg: loadImage("/assets/images/levelbg.jpg"),
+  };
 }
 
- 
 /**
-* Built in setup function in P5
-* This is a good place to create your first class object
-* and save it as a global variable so it can be used
-* in the draw function belows
-*/
+ * Built in setup function in P5
+ * This is a good place to create your first class object
+ * and save it as a global variable so it can be used
+ * in the draw function belows
+ */
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   music.mystery.setVolume(0.8);
- 
+
   game = new Game();
 }
- 
+
 /**
-* Built in draw function in P5
-* This is a good place to call public methods of the object
-* you created in the setup function above
-*/
+ * Built in draw function in P5
+ * This is a good place to call public methods of the object
+ * you created in the setup function above
+ */
 function draw() {
   game.update();
   game.draw();
-    
 }
- 
+
 /**
-*  Built in windowResize listener function in P5
-*/
+ * Built in windowResize listener function in P5
+ */
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+
 function mousePressed() {
   game.onMousePressed();
 }
