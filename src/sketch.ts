@@ -5,9 +5,13 @@ let music: {
 };
 let images: { 
   slingshot: p5.Image;
-  
-  
+  pink: p5.Image;
+  logo: p5.Image;
+  logo2: p5.Image;
+  block: p5.Image;
 };
+let musicOn: boolean = true;
+let soundOn: boolean = true;
 
 /**
 * Built in preload function in P5
@@ -21,8 +25,13 @@ function preload() {
   
   images = {
     slingshot: loadImage("/assets/images/slingshot.png"),
+    pink: loadImage("/assets/images/pink.png"),
+    logo: loadImage("/assets/images/logo.png"),
+    logo2: loadImage("/assets/images/logo2.png"),
+    block: loadImage("/assets/images/block.png"),
   }
 }
+
  
 /**
 * Built in setup function in P5
@@ -46,6 +55,7 @@ function setup() {
 function draw() {
   game.update();
   game.draw();
+    
 }
  
 /**
