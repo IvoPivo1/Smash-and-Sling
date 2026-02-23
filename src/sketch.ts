@@ -1,12 +1,16 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game;
+
 let music: {
   mystery: p5.SoundFile;
 };
 
 let images: {
+  pig: p5.Image;
   birdImg: p5.Image;
-  restartImg: p5.Image;
+  levelbg: p5.Image;
+  restart: p5.Image;
+  levelup: p5.Image;
 };
 
 /**
@@ -18,9 +22,13 @@ function preload() {
   music = {
     mystery: loadSound("/assets/music/mystery.mp3"),
   };
+
   images = {
     birdImg: loadImage("/assets/images/bird.png"),
-    restartImg: loadImage("/assets/images/restart.png"),
+    pig: loadImage("/assets/images/pig.png"),
+    levelbg: loadImage("/assets/images/levelbg.jpg"),
+    restart: loadImage("/assets/images/restart.png"),
+    levelup: loadImage("/assets/images/levelup.png"),
   };
 }
 
@@ -38,34 +46,12 @@ function setup() {
   game = new Game();
 }
 
-/**
- * Built in draw function in P5
- * This is a good place to call public methods of the object
- * you created in the setup function above
- */
 function draw() {
+  background(0);
   game.update();
   game.draw();
 }
 
-/**
- *  Built in windowResize listener function in P5
- */
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-}
-
-/**
- * Built in mousePressed function in P5
- */
-function mousePressed() {
-  game.mousePressed();
-}
-
-function mouseDragged() {
-  game.mouseDragged();
-}
-
-function mouseReleased() {
-  game.mouseReleased();
 }

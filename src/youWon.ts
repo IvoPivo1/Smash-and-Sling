@@ -1,24 +1,23 @@
-class GameOver {
+class YouWon {
   private position: p5.Vector;
-  private restart: p5.Image;
+  private levelup: p5.Image;
   private width: number;
   private height: number;
 
   constructor() {
     this.position = createVector(width / 2, height / 2);
-    this.restart = images.restart;
-    this.width = this.restart.width;
-    this.height = this.restart.height;
+    this.levelup = images.levelup;
+    this.width = this.levelup.width;
+    this.height = this.levelup.height;
   }
 
-  public update() {}
+  update() {}
 
-  public draw() {
+  draw() {
     imageMode(CENTER);
-    image(this.restart, this.position.x, this.position.y);
+    image(this.levelup, this.position.x, this.position.y);
   }
-
-  public isClicked(): boolean {
+  isClicked(): boolean {
     return (
       mouseX > this.position.x - this.width / 2 &&
       mouseX < this.position.x + this.width / 2 &&

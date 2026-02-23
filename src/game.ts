@@ -1,26 +1,16 @@
 class Game {
-  private player: Player;
+  private level: Level;
 
   constructor() {
-    this.player = new Player();
+    this.level = new Level();
   }
 
-  update() {
-    this.player.update();
+  public update() {
+    this.level.update();
   }
 
-  draw() {
-    background(0);
-    this.player.draw();
-  }
-
-  mousePressed() {
-    this.player.mousePressed();
-  }
-  mouseDragged() {
-    this.player.mouseDragged();
-  }
-  mouseReleased() {
-    this.player.mouseReleased();
+  public draw() {
+    background(135, 206, 235);
+    this.level.draw();
   }
 }
