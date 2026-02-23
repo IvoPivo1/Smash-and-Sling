@@ -1,8 +1,3 @@
-
-class Player {
-  private position: p5.Vector;
-  private size: p5.Vector;
-  private velocity: p5.Vector;
 class Player extends Entity {
   velocity: p5.Vector;
   radius: number = 35;
@@ -70,7 +65,7 @@ class Player extends Entity {
     this.mousePressed();
     this.mouseDragged();
     this.mouseReleased();
-    
+
     if (!this.isLaunched) return;
 
     this.velocity.y += this.gravity;

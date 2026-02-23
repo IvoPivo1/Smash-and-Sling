@@ -28,7 +28,8 @@ class Level {
   }
 
   public draw() {
-    imageMode(CORNER); image(images.levelbg, 0, 0, width, height);
+    imageMode(CORNER);
+    image(images.levelbg, 0, 0, width, height);
     // for (const entity of this.entities) {
     //   entity.draw();
     // }

@@ -1,9 +1,7 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game;
 
-let music: {
-  mystery: p5.SoundFile;
-};
+let music: { mystery: p5.SoundFile };
 
 let images: {
   slingshot: p5.Image;
@@ -25,9 +23,7 @@ let soundOn: boolean = true;
  * sound files, images etc...
  */
 function preload() {
-  music = {
-    mystery: loadSound("/assets/music/mystery.mp3"),
-  };
+  music = { mystery: loadSound("/assets/music/mystery.mp3") };
 
   images = {
     slingshot: loadImage("/assets/images/slingshot.png"),
@@ -51,7 +47,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   music.mystery.setVolume(0.8);
-
   game = new Game();
 }
 
@@ -75,5 +70,3 @@ function windowResized() {
 function mousePressed() {
   game.onMousePressed();
 }
-
- 
