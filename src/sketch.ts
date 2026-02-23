@@ -6,11 +6,18 @@ let music: {
 };
 
 let images: {
+  slingshot: p5.Image;
+  pink: p5.Image;
+  logo: p5.Image;
+  logo2: p5.Image;
+  block: p5.Image;
   pig: p5.Image;
   birdImg: p5.Image;
   levelbg: p5.Image;
 };
 
+let musicOn: boolean = true;
+let soundOn: boolean = true;
 
 /**
  * Built in preload function in P5
@@ -23,6 +30,11 @@ function preload() {
   };
 
   images = {
+    slingshot: loadImage("/assets/images/slingshot.png"),
+    pink: loadImage("/assets/images/pink.png"),
+    logo: loadImage("/assets/images/logo.png"),
+    logo2: loadImage("/assets/images/logo2.png"),
+    block: loadImage("/assets/images/block.png"),
     birdImg: loadImage("/assets/images/bird.png"),
     pig: loadImage("/assets/images/pig.png"),
     levelbg: loadImage("/assets/images/levelbg.jpg"),
@@ -43,11 +55,25 @@ function setup() {
   game = new Game();
 }
 
+/**
+ * Built in draw function in P5
+ * This is a good place to call public methods of the object
+ * you created in the setup function above
+ */
 function draw() {
   game.update();
   game.draw();
 }
 
+/**
+ * Built in windowResize listener function in P5
+ */
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+
+function mousePressed() {
+  game.onMousePressed();
+}
+
+ 

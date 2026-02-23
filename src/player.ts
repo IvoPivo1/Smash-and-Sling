@@ -1,3 +1,8 @@
+
+class Player {
+  private position: p5.Vector;
+  private size: p5.Vector;
+  private velocity: p5.Vector;
 class Player extends Entity {
   velocity: p5.Vector;
   radius: number = 35;
