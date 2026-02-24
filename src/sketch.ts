@@ -12,6 +12,9 @@ let images: {
   pig: p5.Image;
   birdImg: p5.Image;
   levelbg: p5.Image;
+  bigBird: p5.Image;
+  iceBird: p5.Image;
+  purpleBird: p5.Image;
 };
 
 let musicOn: boolean = true;
@@ -34,6 +37,9 @@ function preload() {
     birdImg: loadImage("/assets/images/bird.png"),
     pig: loadImage("/assets/images/pig.png"),
     levelbg: loadImage("/assets/images/levelbg.jpg"),
+    bigBird: loadImage("/assets/images/bigBird.png"),
+    iceBird: loadImage("/assets/images/iceBird.png"),
+    purpleBird: loadImage("/assets/images/purpleBird.png"),
   };
 }
 

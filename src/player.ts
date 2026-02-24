@@ -11,10 +11,10 @@ class Player extends Entity {
   private startPos: p5.Vector;
   private dragPos: p5.Vector;
 
-  constructor() {
+  constructor(type: number, sprite: p5.Image) {
     const radius = 35;
     const position = createVector(272, height - 250);
-    super(images.birdImg, position.x, position.y, radius * 2, radius * 2);
+    super(sprite, position.x, position.y, radius * 2, radius * 2);
 
     this.startPos = position.copy();
     this.dragPos = position.copy();

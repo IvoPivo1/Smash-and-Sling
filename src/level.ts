@@ -3,7 +3,7 @@ class Level {
 
   constructor() {
     this.entities = [
-      new Player(),
+      new Player(game.selectedBird, game.selectedSprite),
       new Pig(955, height - 180 - 40),
       new Pig(1055, height - 180 - 40),
       new Pig(1155, height - 280 - 40),
