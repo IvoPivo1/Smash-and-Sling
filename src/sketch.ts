@@ -1,6 +1,6 @@
 //---- GLOBAL VARIABLES ----//
 let game: Game;
-
+let pigList: p5.Image[];
 let music: { mystery: p5.SoundFile };
 
 let images: {
@@ -9,7 +9,6 @@ let images: {
   logo: p5.Image;
   logo2: p5.Image;
   block: p5.Image;
-  pig: p5.Image;
   pig_pilot: p5.Image;
   pig_king: p5.Image;
   pig_stinky: p5.Image;
@@ -40,7 +39,6 @@ function preload() {
     logo2: loadImage("/assets/images/logo2.png"),
     block: loadImage("/assets/images/block.png"),
     birdImg: loadImage("/assets/images/bird.png"),
-    pig: loadImage("/assets/images/pig.png"),
     pig_pilot: loadImage("/assets/images/pig_pilot.png"),
     pig_king: loadImage("/assets/images/pig_king.png"),
     pig_stinky: loadImage("/assets/images/pig_stinky.png"),
@@ -62,6 +60,13 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
+  // lista med alla pig bilder som senare ska slumpas igenom
+  pigList = [
+    images.pig_pilot,
+    images.pig_king,
+    images.pig_stinky,
+    images.pig_soldier,
+  ];
   music.mystery.setVolume(0.8);
   game = new Game();
 }

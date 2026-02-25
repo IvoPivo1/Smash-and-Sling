@@ -7,10 +7,11 @@ class Level {
   constructor() {
     this.entities = [
       new Player(game.selectedBird, game.selectedSprite),
-      new Pig(955, height - 180 - 40),
-      new Pig(1055, height - 180 - 40),
-      new Pig(1155, height - 280 - 40),
-      new Pig(953, height - 312 - 40),
+      // varje pig får en slumpad bild från pigList
+      new Pig(955, height - 180 - 40, random(pigList)),
+      new Pig(1055, height - 180 - 40, random(pigList)),
+      new Pig(1155, height - 280 - 40, random(pigList)),
+      new Pig(953, height - 312 - 40, random(pigList)),
       new Pole(900, height - 200, 12, 200, 0),
       new Pole(1000, height - 200, 12, 200, 0),
       new Pole(1100, height - 300, 12, 300, 0),

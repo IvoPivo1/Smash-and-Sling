@@ -1,7 +1,7 @@
 abstract class Entity {
   // Egenskaper
-  protected position: p5.Vector;
-  protected size: p5.Vector;
+  public position: p5.Vector;
+  public size: p5.Vector;
   protected velocity: p5.Vector;
   protected gravity: number = 0.4;
   private image?: p5.Image;

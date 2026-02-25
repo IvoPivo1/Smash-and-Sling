@@ -1,8 +1,8 @@
 /// <reference path="entity.ts" />
 
 class Pig extends Entity {
-  constructor(x: number, y: number) {
-    super(images.pig, x, y, 40, 40);
+  constructor(x: number, y: number, sprite: p5.Image) {
+    super(sprite, x, y, 40, 40);
   }
 
   public onCollision(other: Entity): void {
