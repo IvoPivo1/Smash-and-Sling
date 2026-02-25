@@ -58,7 +58,8 @@ private drawMuteX(btn: { x: number; y: number; w: number; h: number }) {
   }
 
   public draw() {
-    background(245, 200, 0);
+    imageMode(CORNER);
+    image(images.startscreenbg, 0, 0, width, height);
 
     push();
     fill(120);
@@ -71,7 +72,6 @@ private drawMuteX(btn: { x: number; y: number; w: number; h: number }) {
     const x = this.playBtn.x;
     const y = this.playBtn.y;
     triangle(x - 12, y - 20, x - 12, y + 20, x + 22, y);
-    image(images.slingshot, 40, 690, 70, 80);
     image(images.logo, 20, 30, 90, 80);
     image(images.logo2, 90, 30, 90, 80);
 
@@ -83,9 +83,6 @@ private drawMuteX(btn: { x: number; y: number; w: number; h: number }) {
     if (!soundOn) this.drawMuteX(this.soundBtn);
     pop();
 
-    push();
-    imageMode("center");
-    image(images.pink, width / 2, 150, 600, 500);
-    pop();
   }
+  
 }

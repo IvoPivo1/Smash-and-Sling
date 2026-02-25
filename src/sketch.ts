@@ -4,7 +4,6 @@ let game: Game;
 let music: { mystery: p5.SoundFile };
 
 let images: {
-  slingshot: p5.Image;
   pink: p5.Image;
   logo: p5.Image;
   logo2: p5.Image;
@@ -15,6 +14,8 @@ let images: {
   pig_stinky: p5.Image;
   pig_soldier: p5.Image;
   birdImg: p5.Image;
+  startscreenbg: p5.Image;
+  howtoplaybg: p5.Image;
   levelbg: p5.Image;
   birdSelectbg: p5.Image;
   bigBird: p5.Image;
@@ -34,7 +35,6 @@ function preload() {
   music = { mystery: loadSound("/assets/music/mystery.mp3") };
 
   images = {
-    slingshot: loadImage("/assets/images/slingshot.png"),
     pink: loadImage("/assets/images/pink.png"),
     logo: loadImage("/assets/images/logo.png"),
     logo2: loadImage("/assets/images/logo2.png"),
@@ -45,6 +45,8 @@ function preload() {
     pig_king: loadImage("/assets/images/pig_king.png"),
     pig_stinky: loadImage("/assets/images/pig_stinky.png"),
     pig_soldier: loadImage("/assets/images/pig_soldier.png"),
+    startscreenbg: loadImage("/assets/images/startScreenbg.jpg"),
+    howtoplaybg: loadImage("/assets/images/howScreenbg.jpg"),
     levelbg: loadImage("/assets/images/levelbg.jpg"),
     birdSelectbg: loadImage("/assets/images/birdSelectBackground.jpg"),
     bigBird: loadImage("/assets/images/bigBird.png"),
