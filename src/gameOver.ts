@@ -1,8 +1,8 @@
-class GameOverScreen {
+export class GameOverScreen {
   constructor() {}
 
   update() {
-    // Här kan du lägga knapp‑logik om du vill
+    // Om du vill lägga till knappar senare
   }
 
   draw() {
@@ -18,5 +18,9 @@ class GameOverScreen {
     textSize(28);
     text("Tryck på R för att spela igen", width / 2, height / 2 + 40);
     pop();
+  }
+
+  onMousePressed() {
+    // Om du vill ha knappar senare
   }
 }
