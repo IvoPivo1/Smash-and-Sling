@@ -10,6 +10,10 @@ let images: {
   logo2: p5.Image;
   block: p5.Image;
   pig: p5.Image;
+  pig_pilot: p5.Image;
+  pig_king: p5.Image;
+  pig_stinky: p5.Image;
+  pig_soldier: p5.Image;
   birdImg: p5.Image;
   levelbg: p5.Image;
   bigBird: p5.Image;
@@ -36,6 +40,10 @@ function preload() {
     block: loadImage("/assets/images/block.png"),
     birdImg: loadImage("/assets/images/bird.png"),
     pig: loadImage("/assets/images/pig.png"),
+    pig_pilot: loadImage("/assets/images/pig_pilot.png"),
+    pig_king: loadImage("/assets/images/pig_king.png"),
+    pig_stinky: loadImage("/assets/images/pig_stinky.png"),
+    pig_soldier: loadImage("/assets/images/pig_soldier.png"),
     levelbg: loadImage("/assets/images/levelbg.jpg"),
     bigBird: loadImage("/assets/images/bigBird.png"),
     iceBird: loadImage("/assets/images/iceBird.png"),
