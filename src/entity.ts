@@ -29,6 +29,7 @@ abstract class Entity {
   public draw() {
     if (!this.image) return;
     push();
+    imageMode("center");
     image(
       this.image,
       this.position.x,

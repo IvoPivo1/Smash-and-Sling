@@ -1,36 +1,40 @@
 class Game {
-  private level: Level;
-  private player: Player;
-  private gameOver: GameOver;
+  public level: Level;
+  public state: "howto" | "start" | "birdselect" | "level";
+  private startScreen: StartScreen;
+  private howToScreen: HowToScreen;
+  public birdSelect: BirdSelectScreen;
+  public selectedBird: number = 0;
+  public selectedSprite: p5.Image = images.birdImg;
 
   constructor() {
-    this.level = new Level();
-    this.player = new Player();
-    this.gameOver = new GameOver();
+    this.state = "howto";
+    this.howToScreen = new HowToScreen();
+    this.startScreen = new StartScreen();
+    this.level = null as any;
+    this.birdSelect = null as any;
   }
 
   public update() {
-    this.level.update();
-    this.player.update();
-    this.gameOver.update();
+    if (this.state === "howto") this.howToScreen.update();
+    if (this.state === "start") this.startScreen.update();
+    if (this.state === "birdselect") this.birdSelect.update();
+    if (this.state === "level") this.level.update();
   }
 
   public draw() {
-    background(135, 206, 235);
-    this.level.draw();
-    this.player.draw();
-    this.gameOver.draw();
+    if (this.state === "howto") this.howToScreen.draw();
+    if (this.state === "start") this.startScreen.draw();
+    if (this.state === "birdselect") this.birdSelect.draw();
+    if (this.state === "level") {
+      background(135, 206, 235);
+      this.level.draw();
+    }
   }
 
-  public mousePressed() {
-    this.player.mousePressed();
-  }
-
-  public mouseDragged() {
-    this.player.mouseDragged();
-  }
-
-  public mouseReleased() {
-    this.player.mouseReleased();
+  public onMousePressed() {
+    if (this.state === "howto") this.howToScreen.onMousePressed();
+    if (this.state === "start") this.startScreen.onMousePressed();
+    if (this.state === "birdselect") this.birdSelect.onMousePressed();
   }
 }

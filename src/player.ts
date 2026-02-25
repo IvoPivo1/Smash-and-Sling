@@ -1,5 +1,4 @@
-class Player {
-  position: p5.Vector;
+class Player extends Entity {
   velocity: p5.Vector;
   radius: number = 35;
 
@@ -12,19 +11,22 @@ class Player {
   private startPos: p5.Vector;
   private dragPos: p5.Vector;
 
-  private sprite: p5.Image;
+  constructor(type: number, sprite: p5.Image) {
+    const radius = 35;
+    const position = createVector(272, height - 250);
+    super(sprite, position.x, position.y, radius * 2, radius * 2);
 
-  constructor() {
-    this.sprite = images.birdImg;
-
-    this.startPos = createVector(272, height - 250);
-    this.position = this.startPos.copy();
-    this.dragPos = this.startPos.copy();
+    this.startPos = position.copy();
+    this.dragPos = position.copy();
     this.velocity = createVector(0, 0);
   }
 
-  mousePressed() {
-    if (this.isLaunched) return;
+  public onCollision(other: Entity): void {
+    // todo....
+  }
+
+  private mousePressed() {
+    if (!mouseIsPressed || this.isLaunched) return;
 
     const d = dist(mouseX, mouseY, this.position.x, this.position.y);
     if (d < this.radius) {
@@ -32,7 +34,7 @@ class Player {
     }
   }
 
-  mouseDragged() {
+  private mouseDragged() {
     if (!this.isDragging || this.isLaunched) return;
 
     this.dragPos.set(mouseX, mouseY);
@@ -48,8 +50,8 @@ class Player {
     this.position.set(this.dragPos);
   }
 
-  mouseReleased() {
-    if (!this.isDragging || this.isLaunched) return;
+  private mouseReleased() {
+    if (mouseIsPressed || !this.isDragging || this.isLaunched) return;
 
     this.isDragging = false;
     this.isLaunched = true;
@@ -60,6 +62,10 @@ class Player {
   }
 
   update() {
+    this.mousePressed();
+    this.mouseDragged();
+    this.mouseReleased();
+
     if (!this.isLaunched) return;
 
     this.velocity.y += this.gravity;
@@ -70,20 +76,14 @@ class Player {
   draw() {
     // Draw slingshot band while dragging
     if (this.isDragging) {
+      push();
       stroke(60, 40, 20);
       strokeWeight(6);
       line(this.startPos.x, this.startPos.y, this.position.x, this.position.y);
+      pop();
     }
 
-    // Draw the bird sprite
-    imageMode(CENTER);
-    image(
-      this.sprite,
-      this.position.x,
-      this.position.y,
-      this.radius * 2,
-      this.radius * 2,
-    );
+    super.draw();
   }
 
   reset() {

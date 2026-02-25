@@ -3,6 +3,7 @@ class Level {
 
   constructor() {
     this.entities = [
+      new Player(game.selectedBird, game.selectedSprite),
       new Pig(955, height - 180 - 40),
       new Pig(1055, height - 180 - 40),
       new Pig(1155, height - 280 - 40),
@@ -20,11 +21,15 @@ class Level {
   }
 
   public update() {
+    for (let i = 0; i < this.entities.length; i++) {
+      this.entities[i].update();
+    }
     // kolla kollisioner mellan entiteterna.
   }
 
   public draw() {
-    imageMode(CORNER); image(images.levelbg, 0, 0, width, height);
+    imageMode(CORNER);
+    image(images.levelbg, 0, 0, width, height);
     // for (const entity of this.entities) {
     //   entity.draw();
     // }
