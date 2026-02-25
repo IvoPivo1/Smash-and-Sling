@@ -1,5 +1,8 @@
+/// <reference path="entity.ts" />
+
 class Level {
   private entities: Entity[];
+  public isGameOver: boolean = false;
 
   constructor() {
     this.entities = [
@@ -20,19 +23,29 @@ class Level {
     ];
   }
 
+  public getPigs() {
+    return this.entities.filter((e) => e instanceof Pig);
+  }
+
+  private getPlayer() {
+    return this.entities.find((e) => e instanceof Player) as Player;
+  }
+
   public update() {
     for (let i = 0; i < this.entities.length; i++) {
       this.entities[i].update();
     }
-    // kolla kollisioner mellan entiteterna.
+
+    const pigs = this.getPigs();
+    if (pigs.length === 0) {
+      this.isGameOver = true;
+    }
   }
 
   public draw() {
     imageMode(CORNER);
     image(images.levelbg, 0, 0, width, height);
-    // for (const entity of this.entities) {
-    //   entity.draw();
-    // }
+
     for (let i = 0; i < this.entities.length; i++) {
       this.entities[i].draw();
     }
