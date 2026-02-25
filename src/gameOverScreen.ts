@@ -17,7 +17,7 @@ class GameOverScreen {
     }
   }
 
-  update() {}
+  public update() {}
 
   draw() {
     push();

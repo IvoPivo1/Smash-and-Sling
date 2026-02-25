@@ -33,11 +33,10 @@ class Level {
   }
 
   public update() {
-    // uppdaterar alla entites
     for (let i = 0; i < this.entities.length; i++) {
       this.entities[i].update();
     }
-    // kolla kollisioner mellan entiteterna
+
     for (let i = 0; i < this.entities.length; i++) {
       for (let j = i + 1; j < this.entities.length; j++) {
         const a = this.entities[i];
@@ -49,7 +48,7 @@ class Level {
         }
       }
     }
-    // tar bort entities
+
     this.entities = this.entities.filter((entity) => entity.alive);
   }
 
