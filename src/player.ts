@@ -1,3 +1,5 @@
+/// <reference path="entity.ts" />
+
 class Player extends Entity {
   velocity: p5.Vector;
   radius: number = 35;

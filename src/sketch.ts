@@ -62,6 +62,7 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
+  background(0);
   game.update();
   game.draw();
 }
