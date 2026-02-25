@@ -5,12 +5,11 @@ class Pole extends Entity {
     super(undefined, x, y, width, height);
   }
 
-  public onCollision(other: Entity): void {
-    throw new Error("Method not implemented.");
-  }
+  public onCollision(other: Entity): void {}
 
   public draw() {
     push();
+    rectMode(CENTER);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
   }

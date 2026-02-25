@@ -25,6 +25,17 @@ class Level {
       this.entities[i].update();
     }
     // kolla kollisioner mellan entiteterna.
+    for (let i = 0; i < this.entities.length; i++) {
+      for (let j = i + 1; j < this.entities.length; j++) {
+        const a = this.entities[i];
+        const b = this.entities[j];
+
+        if (a.isOverlap(b)) {
+          a.onCollision(b);
+          b.onCollision(a);
+        }
+      }
+    }
   }
 
   public draw() {

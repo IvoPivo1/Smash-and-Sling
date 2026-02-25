@@ -17,8 +17,15 @@ abstract class Entity {
     this.size = createVector(width, height);
   }
 
-  public isOverlap(other: Entity) {
+  public isOverlap(other: Entity): boolean {
     // överlappar this & other?
+    const dx = Math.abs(this.position.x - other.position.x);
+    const dy = Math.abs(this.position.y - other.position.y);
+
+    return (
+      dx < this.size.x / 2 + other.size.x / 2 &&
+      dy < this.size.y / 2 + other.size.y / 2
+    );
   }
 
   public abstract onCollision(other: Entity): void;

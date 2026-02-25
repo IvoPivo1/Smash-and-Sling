@@ -6,6 +6,9 @@ class Pig extends Entity {
   }
 
   public onCollision(other: Entity): void {
-    throw new Error("Method not implemented.");
+    if (other instanceof Player) {
+      // flytta bort den långt utanför skärm
+      this.position.set(-9999, -9999);
+    }
   }
 }
