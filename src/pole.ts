@@ -1,13 +1,27 @@
 /// <reference path="entity.ts" />
 
 class Pole extends Entity {
-  constructor(x: number, y: number, width: number, height: number) {
+  constructor(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    gravity = 0.4,
+  ) {
     const cx = x + width / 2;
     const cy = y + height / 2;
-    super(undefined, cx, cy, width, height);
+    super(undefined, cx, cy, width, height, gravity);
   }
 
-  public onCollision(other: Entity): void {}
+  public onCollision(other: Entity): void {
+    if (other instanceof Player) {
+      this.destroy();
+    } else if (other instanceof Pole && this.position.y !== other.position.y) {
+      // flytta tillbaka ett steg
+      this.position.sub(this.velocity);
+      this.velocity.set(0, 0);
+    }
+  }
 
   public draw() {
     push();

@@ -2,7 +2,15 @@ abstract class Entity {
   // Egenskaper
   protected position: p5.Vector;
   protected size: p5.Vector;
+  protected velocity: p5.Vector;
+  protected gravity: number = 0.4;
   private image?: p5.Image;
+
+  public alive: boolean = true;
+
+  public destroy(): void {
+    this.alive = false;
+  }
 
   // Konstruktor
   constructor(
@@ -11,10 +19,13 @@ abstract class Entity {
     y: number,
     width: number,
     height: number,
+    gravity = 0.4,
   ) {
     this.image = image;
     this.position = createVector(x, y);
     this.size = createVector(width, height);
+    this.velocity = createVector(0, 0);
+    this.gravity = gravity;
   }
 
   public isOverlap(other: Entity): boolean {
@@ -31,7 +42,10 @@ abstract class Entity {
   public abstract onCollision(other: Entity): void;
 
   // Metoder
-  public update() {}
+  public update() {
+    this.velocity.y += this.gravity;
+    this.position.add(this.velocity);
+  }
 
   public draw() {
     if (!this.image) return;

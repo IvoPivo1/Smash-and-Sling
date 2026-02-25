@@ -1,8 +1,5 @@
 class Player extends Entity {
-  velocity: p5.Vector;
   radius: number = 35;
-
-  private gravity: number = 0.4;
   private dragDamping: number = 0.98;
 
   private isDragging: boolean = false;
@@ -18,11 +15,10 @@ class Player extends Entity {
 
     this.startPos = position.copy();
     this.dragPos = position.copy();
-    this.velocity = createVector(0, 0);
   }
 
   public onCollision(other: Entity): void {
-    // todo....
+    // this.destroy();
   }
 
   private mousePressed() {
@@ -57,7 +53,7 @@ class Player extends Entity {
     this.isLaunched = true;
 
     // Here you can adjust the speed of the bird
-    const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.45);
+    const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.3);
     this.velocity.add(force);
   }
 
