@@ -1,29 +1,22 @@
-class GameOver {
-  private position: p5.Vector;
-  private restart: p5.Image;
-  private width: number;
-  private height: number;
+class GameOverScreen {
+  constructor() {}
 
-  constructor() {
-    this.position = createVector(width / 2, height / 2);
-    this.restart = images.restart;
-    this.width = this.restart.width;
-    this.height = this.restart.height;
+  update() {
+    // Här kan du lägga knapp‑logik om du vill
   }
 
-  public update() {}
+  draw() {
+    push();
+    fill(0, 0, 0, 150);
+    rect(0, 0, width, height);
 
-  public draw() {
-    imageMode(CENTER);
-    image(this.restart, this.position.x, this.position.y);
-  }
+    fill(255);
+    textAlign(CENTER);
+    textSize(60);
+    text("GAME OVER", width / 2, height / 2 - 40);
 
-  public isClicked(): boolean {
-    return (
-      mouseX > this.position.x - this.width / 2 &&
-      mouseX < this.position.x + this.width / 2 &&
-      mouseY > this.position.y - this.height / 2 &&
-      mouseY < this.position.y - this.height / 2
-    );
+    textSize(28);
+    text("Tryck på R för att spela igen", width / 2, height / 2 + 40);
+    pop();
   }
 }
