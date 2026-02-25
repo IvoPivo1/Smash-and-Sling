@@ -22,12 +22,13 @@ class BirdSelectScreen {
   }
 
   public draw() {
-    background(245, 200, 0);
+    imageMode(CORNER);
+    image(images.birdSelectbg, 0, 0, width, height);
 
     push();
     textAlign(CENTER, CENTER);
-    textSize(40);
-    fill(50);
+    textSize(55);
+    fill(255);
     text("Choose Your Bird", width / 2, 120);
     pop();
 
