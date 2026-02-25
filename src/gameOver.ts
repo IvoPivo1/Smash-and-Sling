@@ -1,9 +1,7 @@
-export class GameOverScreen {
+class GameOverScreen {
   constructor() {}
 
-  update() {
-    // Om du vill lägga till knappar senare
-  }
+  update() {}
 
   draw() {
     push();
@@ -20,7 +18,5 @@ export class GameOverScreen {
     pop();
   }
 
-  onMousePressed() {
-    // Om du vill ha knappar senare
-  }
+  onMousePressed() {}
 }
