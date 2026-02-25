@@ -1,5 +1,8 @@
+/// <reference path="entity.ts" />
+
 class Level {
   private entities: Entity[];
+  public isGameOver: boolean = false;
 
   constructor() {
     this.entities = [
@@ -18,6 +21,14 @@ class Level {
       new Pole(1000, height - 154 - 12 - 154, 12, 120),
       new Pole(900, height - 161 - 12 - 160, 112, 12),
     ];
+  }
+
+  public getPigs() {
+    return this.entities.filter((e) => e instanceof Pig);
+  }
+
+  private getPlayer() {
+    return this.entities.find((e) => e instanceof Player) as Player;
   }
 
   public update() {
@@ -44,9 +55,7 @@ class Level {
   public draw() {
     imageMode(CORNER);
     image(images.levelbg, 0, 0, width, height);
-    // for (const entity of this.entities) {
-    //   entity.draw();
-    // }
+
     for (let i = 0; i < this.entities.length; i++) {
       this.entities[i].draw();
     }

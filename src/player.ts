@@ -1,3 +1,5 @@
+/// <reference path="entity.ts" />
+
 class Player extends Entity {
   radius: number = 35;
   private dragDamping: number = 0.98;
