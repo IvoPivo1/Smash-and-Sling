@@ -1,4 +1,4 @@
-class HowToScreen {
+class HowToScreen implements IScreen {
   private howToStart: number = 0;
   private howToDuration: number = 9000;
 
@@ -9,12 +9,12 @@ class HowToScreen {
   public update() {
       const passed = millis() - this.howToStart;
       if (passed > this.howToDuration) {
-        game.state = "start";
+        game.currentScreen = new StartScreen();
       }
   }
 
   public onMousePressed() {
-      game.state = "start";
+      game.currentScreen = new StartScreen();
   }
 
   public draw() {

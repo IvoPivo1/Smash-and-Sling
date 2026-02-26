@@ -27,8 +27,7 @@ class StartScreen {
       soundOn = !soundOn;
     }
     if (this.hitCircle(this.playBtn)) {
-      game.birdSelect = new BirdSelectScreen();
-      game.state = "birdselect";
+      game.currentScreen = new BirdSelectScreen();
     }
 
     {
