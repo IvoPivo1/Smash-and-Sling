@@ -21,7 +21,7 @@ class HowToScreen {
   imageMode(CORNER);
   image(images.howtoplaybg, 0, 0, width, height);
 
-  const baseY = height - 200;
+  const baseY = height - 300;
 
   push();
   textAlign(CENTER, CENTER);
@@ -35,7 +35,7 @@ class HowToScreen {
     "with the Left Mouse Click.\n" +
     "Click and drag to aim.\n" +
     "Release to shoot.",
-    width * 0.5,
+    0,
     baseY,
     width,
     200
@@ -44,8 +44,8 @@ class HowToScreen {
   text(
     "Click mid-air to activate ability.\n" +
     "Have fun!",
-    width * 0.5,
-    baseY + 110,
+    0,
+    baseY + 100,
     width,
     200
   );
