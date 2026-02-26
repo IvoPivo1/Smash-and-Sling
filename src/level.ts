@@ -1,6 +1,6 @@
 /// <reference path="entity.ts" />
 
-class Level {
+class Level implements IScreen {
   private entities: Entity[];
   public isGameOver: boolean = false;
 
@@ -51,6 +51,13 @@ class Level {
     }
     // tar bort entities
     this.entities = this.entities.filter((entity) => entity.alive);
+    
+    // kolla om spelet är över
+    if (this.getPigs().length === 0) {
+  
+    game.currentScreen = new WinningScreen();
+    }
+
   }
 
   public draw() {
