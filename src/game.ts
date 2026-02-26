@@ -1,11 +1,13 @@
 class Game {
   public level: Level;
-  public state: "howto" | "start" | "birdselect" | "level";
+  public state: "howto" | "start" | "birdselect" | "level"| "levelselect" | "level";
   private startScreen: StartScreen;
   private howToScreen: HowToScreen;
   public birdSelect: BirdSelectScreen;
   public selectedBird: number = 0;
   public selectedSprite: p5.Image = images.birdImg;
+  public unlocked: number[] = [0];
+  public stars: number[] = new Array(10).fill(0);
 
   constructor() {
     this.state = "howto";
