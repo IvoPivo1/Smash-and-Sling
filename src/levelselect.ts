@@ -1,4 +1,4 @@
-class LevelSelect {
+class LevelSelect implements IScreen {
 private ck: { x: number; y: number; r: number; id: number }[] = [];
 
 constructor() {}
@@ -46,8 +46,8 @@ if (d > c.r) continue;
 
 if (!this.isUnlocked(c.id)) continue;
 
-game.level = new Level(c.id);
-game.state = "level";
+game.currentScreen = new Level(c.id);
+game.currentScreen = new Level();
 return;
 }
 }

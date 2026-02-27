@@ -7,7 +7,6 @@ interface IScreen {
 class Game {
   public currentScreen: IScreen;
   public selectedBird: number = 0;
-  public levelSelect: levelSelect
   public selectedSprite: p5.Image = images.birdImg;
   public unlocked: number[] = [0];
   public stars: number[] = new Array(10).fill(0);

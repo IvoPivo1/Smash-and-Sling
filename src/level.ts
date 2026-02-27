@@ -2,7 +2,7 @@
 
 class Level implements IScreen {
   private entities: Entity[];
- private id: number;
+  private id: number;
   constructor(id: number = 0) {
     this.id = id;
 
@@ -24,34 +24,8 @@ class Level implements IScreen {
       new Pole(900, height - 161 - 12 - 160, 112, 12),
     ];
   }
-public update() {
-for (let i = 0; i < this.entities.length; i++) {
-this.entities[i].update();
-}
 
-let pigsLeft = 0;
-for (let i = 0; i < this.entities.length; i++) {
-if (this.entities[i] instanceof Pig) pigsLeft++;
-}
-
-if (pigsLeft === 0) {
-game.stars[this.id] = 3;
-
-if (this.id < 9) {
-let found = false;
-for (let i = 0; i < game.unlocked.length; i++) {
-if (game.unlocked[i] === this.id + 1) found = true;
-}
-if (!found) game.unlocked.push(this.id + 1);
-}
-
-game.state = "levelselect";
-
-}
-    
-
-    
-    // kolla kollisioner mellan entiteterna.
+  // kolla kollisioner mellan entiteterna.
   public getPigs() {
     return this.entities.filter((e) => e instanceof Pig);
   }
@@ -79,23 +53,29 @@ game.state = "levelselect";
     }
     // tar bort entities
     this.entities = this.entities.filter((entity) => entity.alive);
-    
+
     // kolla om spelet är över
     if (this.getPigs().length === 0) {
-  
-    game.currentScreen = new WinningScreen();
-    }
+      game.currentScreen = new WinningScreen();
+      game.stars[this.id] = 3;
 
-    if (!this.getPlayer().alive) { 
-      game.currentScreen = new BirdSelectScreen(); 
+        if (this.id < 9) {
+          let found = false;
+          for (let i = 0; i < game.unlocked.length; i++) {
+            if (game.unlocked[i] === this.id + 1) found = true;
+          }
+          if (!found) game.unlocked.push(this.id + 1);
+        }
     }
 
     if (!this.getPlayer().alive) {
-       game.currentScreen = new BirdSelectScreen();
-      return;
+      game.currentScreen = new BirdSelectScreen();
     }
 
- 
+    if (!this.getPlayer().alive) {
+      game.currentScreen = new BirdSelectScreen();
+      return;
+    }
   }
 
   public draw() {

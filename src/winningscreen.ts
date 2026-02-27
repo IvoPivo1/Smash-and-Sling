@@ -10,12 +10,12 @@ class WinningScreen {
         const passed = millis() - this.timeStart;
 
         if (passed > this.duration) {
-             game.currentScreen = new BirdSelectScreen();    
+             game.currentScreen = new LevelSelect();    
         }
     }
 
     public onMousePressed() {
-        game.currentScreen = new BirdSelectScreen();
+        game.currentScreen = new LevelSelect();
     }
 
     public draw() {
