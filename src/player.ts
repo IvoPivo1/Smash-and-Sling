@@ -1,8 +1,7 @@
-class Player extends Entity {
-  velocity: p5.Vector;
-  radius: number = 35;
+/// <reference path="entity.ts" />
 
-  private gravity: number = 0.4;
+class Player extends Entity implements IScreen{
+  radius: number = 35;
   private dragDamping: number = 0.98;
 
   private isDragging: boolean = false;
@@ -18,11 +17,10 @@ class Player extends Entity {
 
     this.startPos = position.copy();
     this.dragPos = position.copy();
-    this.velocity = createVector(0, 0);
   }
 
   public onCollision(other: Entity): void {
-    // todo....
+    // this.destroy();
   }
 
   private mousePressed() {
@@ -57,7 +55,7 @@ class Player extends Entity {
     this.isLaunched = true;
 
     // Here you can adjust the speed of the bird
-    const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.45);
+    const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.3);
     this.velocity.add(force);
   }
 
@@ -65,6 +63,13 @@ class Player extends Entity {
     this.mousePressed();
     this.mouseDragged();
     this.mouseReleased();
+
+    // Destroy om player faller under skärmen
+    if (this.position.y > height + 1000) {
+      game.currentScreen = new BirdSelectScreen();
+      return;
+    }
+
 
     if (!this.isLaunched) return;
 
