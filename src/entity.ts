@@ -48,13 +48,13 @@ abstract class Entity {
 
     const margin = 300;
 
-    if(
+    if (
       this.position.x < -margin ||
       this.position.x > width + margin ||
       this.position.y > height + margin
     ) {
       this.destroy();
-    } 
+    }
   }
 
   public draw() {

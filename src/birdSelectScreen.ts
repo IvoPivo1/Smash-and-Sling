@@ -1,10 +1,17 @@
 class BirdSelectScreen implements IScreen {
-  private birds: { x: number; y: number; r: number; unlocked: boolean; id: number; sprite: p5.Image; }[];
+  private birds: {
+    x: number;
+    y: number;
+    r: number;
+    unlocked: boolean;
+    id: number;
+    sprite: p5.Image;
+  }[];
 
   constructor() {
     // 4 fåglar, bara första upplåst
     this.birds = [
-      { x: 0, y: 0, r: 60, unlocked: true,  id: 0, sprite: images.birdImg },
+      { x: 0, y: 0, r: 60, unlocked: true, id: 0, sprite: images.birdImg },
       { x: 0, y: 0, r: 60, unlocked: false, id: 1, sprite: images.bigBird },
       { x: 0, y: 0, r: 60, unlocked: false, id: 2, sprite: images.iceBird },
       { x: 0, y: 0, r: 60, unlocked: false, id: 3, sprite: images.purpleBird },
@@ -65,8 +72,6 @@ class BirdSelectScreen implements IScreen {
         game.selectedSprite = bird.sprite;
         game.currentScreen = new LevelSelect();
         return;
-        
-        
       }
     }
   }

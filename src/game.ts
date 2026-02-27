@@ -10,9 +10,17 @@ class Game {
   public selectedSprite: p5.Image = images.birdImg;
   public unlocked: number[] = [0];
   public stars: number[] = new Array(10).fill(0);
+  public levelFactory: LevelFactory;
+  public currentLevel: number = 0;
 
   constructor() {
     this.currentScreen = new HowToScreen();
+    this.levelFactory = new LevelFactory();
+  }
+
+  public startLevel(levelNumber: number) {
+    this.currentLevel = levelNumber;
+    this.currentScreen = this.levelFactory.createLevel(levelNumber);
   }
 
   public update() {
@@ -21,7 +29,6 @@ class Game {
 
   public draw() {
     this.currentScreen.draw();
-   
   }
 
   public onMousePressed() {
