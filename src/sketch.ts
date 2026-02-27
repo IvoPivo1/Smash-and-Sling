@@ -19,6 +19,7 @@ let images: {
   bigBird: p5.Image;
   iceBird: p5.Image;
   purpleBird: p5.Image;
+  gameOver: p5.Image;
 };
 
 let musicOn: boolean = true;
@@ -48,6 +49,7 @@ function preload() {
     bigBird: loadImage("/assets/images/bigBird.png"),
     iceBird: loadImage("/assets/images/iceBird.png"),
     purpleBird: loadImage("/assets/images/purpleBird.png"),
+    gameOver: loadImage("/assets/images/gameover.jpg"),
   };
 }
 

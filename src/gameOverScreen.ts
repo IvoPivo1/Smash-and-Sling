@@ -1,40 +1,35 @@
-class GameOverScreen {
-  private message: string;
-  private subMessage: string;
+class GameOverScreen implements IScreen {
+  private restartBtn = { x: 0, y: 0, w: 260, h: 90 };
 
-  constructor() {
-    this.message = "GAME OVER";
-    this.subMessage = "Tryck på R för att spela igen";
+  constructor() {}
+
+  public update() {
+    this.restartBtn.x = width * 0.5 - this.restartBtn.w / 2;
+    this.restartBtn.y = height * 0.75;
   }
 
-  public setWin(win: boolean) {
-    if (win) {
-      this.message = "DU VANN!";
-      this.subMessage = "Tryck på N för nästa level";
-    } else {
-      this.message = "GAME OVER";
-      this.subMessage = "Tryck på R för att spela igen";
-    }
-  }
+  public draw() {
+    imageMode(CORNER);
+    image(images.gameOver0, 0, width, height);
 
-  public update() {}
-
-  draw() {
     push();
-    fill(0, 0, 0, 150);
-    rect(0, 0, width, height);
+    fill(255, 0, 0);
+    stroke(255);
+    strokeWeight(4);
+    rect(
+      this.restartBtn.x,
+      this.restartBtn.y,
+      this.restartBtn.w,
+      this.restartBtn.h,
+      20,
+    );
 
     fill(255);
-    textAlign(CENTER);
-    textSize(60);
-    text(this.message, width / 2, height / 2 - 40);
-
-    textSize(28);
-    text(this.subMessage, width / 2, height / 2 + 40);
-    pop();
+    noStroke();
+    textAlign;
   }
 
-  onMousePressed() {
-    //knappar
+  public onMousePressed() {
+    //knappar (restart)
   }
 }
