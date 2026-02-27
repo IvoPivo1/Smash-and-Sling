@@ -2,22 +2,11 @@
 
 class Level implements IScreen {
   private entities: Entity[];
-<<<<<<< HEAD
+ 
   private id: number;
-
-
-    // Tar emot färdigbyggda entities
-  constructor(entities: Entity[], id: number = 0) {
+  constructor(id: number = 0) {
     this.id = id;
-    this.entities = entities;
-  }
 
-
-  // kolla kollisioner mellan entiteterna.
-=======
-  public isGameOver: boolean = false;
-
-  constructor() {
     this.entities = [
       new Player(game.selectedBird, game.selectedSprite),
       // varje pig får en slumpad bild från pigList
@@ -37,7 +26,7 @@ class Level implements IScreen {
     ];
   }
 
->>>>>>> parent of 1d99083 (Merge pull request #27 from IvoPivo1/12-level-select)
+  // kolla kollisioner mellan entiteterna.
   public getPigs() {
     return this.entities.filter((e) => e instanceof Pig);
   }
@@ -65,25 +54,29 @@ class Level implements IScreen {
     }
     // tar bort entities
     this.entities = this.entities.filter((entity) => entity.alive);
+    
 
     // kolla om spelet är över
     if (this.getPigs().length === 0) {
+
       game.currentScreen = new WinningScreen();
       game.stars[this.id] = 3;
 
-      if (this.id < 9) {
-        let found = false;
-        for (let i = 0; i < game.unlocked.length; i++) {
-          if (game.unlocked[i] === this.id + 1) found = true;
+        if (this.id < 9) {
+          let found = false;
+          for (let i = 0; i < game.unlocked.length; i++) {
+            if (game.unlocked[i] === this.id + 1) found = true;
+          }
+          if (!found) game.unlocked.push(this.id + 1);
         }
-        if (!found) game.unlocked.push(this.id + 1);
-      }
     }
 
     if (!this.getPlayer().alive) {
-      game.startLevel(this.id);
+      game.currentScreen = new Level();
       return;
     }
+
+ 
   }
 
   public draw() {

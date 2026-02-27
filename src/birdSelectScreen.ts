@@ -1,17 +1,10 @@
-‰class BirdSelectScreen implements IScreen {
-  private birds: {
-    x: number;
-    y: number;
-    r: number;
-    unlocked: boolean;
-    id: number;
-    sprite: p5.Image;
-  }[];
+class BirdSelectScreen implements IScreen {
+  private birds: { x: number; y: number; r: number; unlocked: boolean; id: number; sprite: p5.Image; }[];
 
   constructor() {
     // 4 fåglar, bara första upplåst
     this.birds = [
-      { x: 0, y: 0, r: 60, unlocked: true, id: 0, sprite: images.birdImg },
+      { x: 0, y: 0, r: 60, unlocked: true,  id: 0, sprite: images.birdImg },
       { x: 0, y: 0, r: 60, unlocked: false, id: 1, sprite: images.bigBird },
       { x: 0, y: 0, r: 60, unlocked: false, id: 2, sprite: images.iceBird },
       { x: 0, y: 0, r: 60, unlocked: false, id: 3, sprite: images.purpleBird },
@@ -70,12 +63,9 @@
 
         game.selectedBird = bird.id;
         game.selectedSprite = bird.sprite;
-<<<<<<< HEAD
-        game.startLevel(1);
-=======
-        game.currentScreen = new Level();
-        
->>>>>>> parent of 1d99083 (Merge pull request #27 from IvoPivo1/12-level-select)
+        game.currentScreen = new LevelSelect();
+        return;
+      
       }
     }
   }
