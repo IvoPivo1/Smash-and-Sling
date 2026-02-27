@@ -1,6 +1,6 @@
 /// <reference path="entity.ts" />
 
-class Player extends Entity {
+class Player extends Entity implements IScreen{
   radius: number = 35;
   private dragDamping: number = 0.98;
 
@@ -63,6 +63,13 @@ class Player extends Entity {
     this.mousePressed();
     this.mouseDragged();
     this.mouseReleased();
+
+    // Destroy om player faller under skärmen
+    if (this.position.y > height + 1000) {
+      game.currentScreen = new BirdSelectScreen();
+      return;
+    }
+
 
     if (!this.isLaunched) return;
 

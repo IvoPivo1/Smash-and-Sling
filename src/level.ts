@@ -58,6 +58,16 @@ class Level implements IScreen {
     game.currentScreen = new WinningScreen();
     }
 
+    if (!this.getPlayer().alive) { 
+      game.currentScreen = new BirdSelectScreen(); 
+    }
+
+    if (!this.getPlayer().alive) {
+       game.currentScreen = new BirdSelectScreen();
+      return;
+    }
+
+ 
   }
 
   public draw() {
