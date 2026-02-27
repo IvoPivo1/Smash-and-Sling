@@ -4,10 +4,13 @@ class Level implements IScreen {
   private entities: Entity[];
   private id: number;
 
+
+    // Tar emot färdigbyggda entities
   constructor(entities: Entity[], id: number = 0) {
     this.id = id;
     this.entities = entities;
   }
+
 
   // kolla kollisioner mellan entiteterna.
   public getPigs() {

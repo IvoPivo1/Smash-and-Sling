@@ -1,4 +1,4 @@
-class BirdSelectScreen implements IScreen {
+‰class BirdSelectScreen implements IScreen {
   private birds: {
     x: number;
     y: number;
@@ -70,8 +70,7 @@ class BirdSelectScreen implements IScreen {
 
         game.selectedBird = bird.id;
         game.selectedSprite = bird.sprite;
-        game.currentScreen = new LevelSelect();
-        return;
+        game.startLevel(1);
       }
     }
   }

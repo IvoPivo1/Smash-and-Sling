@@ -8,19 +8,24 @@ class Game {
   public currentScreen: IScreen;
   public selectedBird: number = 0;
   public selectedSprite: p5.Image = images.birdImg;
-  public unlocked: number[] = [0];
-  public stars: number[] = new Array(10).fill(0);
-  public levelFactory: LevelFactory;
-  public currentLevel: number = 0;
+  private gameOverScreen: GameOverScreen;
+  private levelFactory: LevelFactory;
+  public currentLevel: number = 1;
 
   constructor() {
-    this.currentScreen = new HowToScreen();
+    this.state = "howto";
+    this.howToScreen = new HowToScreen();
+    this.startScreen = new StartScreen();
+    this.level = null as any;
+    this.birdSelect = null as any;
+    this.gameOverScreen = new GameOverScreen();
     this.levelFactory = new LevelFactory();
   }
 
-  public startLevel(levelNumber: number) {
-    this.currentLevel = levelNumber;
-    this.currentScreen = this.levelFactory.createLevel(levelNumber);
+  public startLevel(levelNumber: number = this.currentLevel) {
+    // Startar en ny level genom factory
+    this.level = this.levelFactory.createLevel(levelNumber);
+    this.state = "level";
   }
 
   public update() {
