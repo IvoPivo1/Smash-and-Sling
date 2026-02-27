@@ -64,6 +64,8 @@ class BirdSelectScreen {
         game.selectedSprite = bird.sprite;
         game.level = new Level();
         game.state = "level";
+        game.state = "levelselect";
+        return;
       }
     }
   }

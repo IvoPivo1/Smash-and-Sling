@@ -5,6 +5,7 @@ class Game {
   private howToScreen: HowToScreen;
   public birdSelect: BirdSelectScreen;
   public selectedBird: number = 0;
+  public levelSelect: levelSelect
   public selectedSprite: p5.Image = images.birdImg;
   public unlocked: number[] = [0];
   public stars: number[] = new Array(10).fill(0);
@@ -15,12 +16,14 @@ class Game {
     this.startScreen = new StartScreen();
     this.level = null as any;
     this.birdSelect = null as any;
+    this.levelSelect = new LevelSelect
   }
 
   public update() {
     if (this.state === "howto") this.howToScreen.update();
     if (this.state === "start") this.startScreen.update();
     if (this.state === "birdselect") this.birdSelect.update();
+    if(this.state === "levelselect")this.levelSelect.update();
     if (this.state === "level") this.level.update();
   }
 
@@ -28,6 +31,7 @@ class Game {
     if (this.state === "howto") this.howToScreen.draw();
     if (this.state === "start") this.startScreen.draw();
     if (this.state === "birdselect") this.birdSelect.draw();
+    if(this.state === "levelselect")this.levelSelect.draw();
     if (this.state === "level") {
       background(135, 206, 235);
       this.level.draw();
@@ -38,5 +42,6 @@ class Game {
     if (this.state === "howto") this.howToScreen.onMousePressed();
     if (this.state === "start") this.startScreen.onMousePressed();
     if (this.state === "birdselect") this.birdSelect.onMousePressed();
+    if(this.state === "levelselect")this.levelSelect.onMousePressed();
   }
 }
