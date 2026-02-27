@@ -1,4 +1,4 @@
-class BirdSelectScreen {
+‰class BirdSelectScreen implements IScreen {
   private birds: {
     x: number;
     y: number;

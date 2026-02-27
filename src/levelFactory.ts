@@ -38,7 +38,7 @@ class LevelFactory {
       new Pole(900, height - 161 - 12 - 160, 112, 12),
     ];
 
-    return new Level(entites);
+    return new Level(entites, 1);
   }
 
   // Level 2
@@ -52,6 +52,6 @@ class LevelFactory {
       new Pole(900, height - 200, 12, 200, 0),
     ];
 
-    return new Level(entities);
+    return new Level(entities, 2);
   }
 }
