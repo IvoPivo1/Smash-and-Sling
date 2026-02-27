@@ -1,4 +1,4 @@
-class HowToScreen {
+class HowToScreen implements IScreen {
   private howToStart: number = 0;
   private howToDuration: number = 9000;
 
@@ -7,36 +7,48 @@ class HowToScreen {
   }
 
   public update() {
-      const passed = millis() - this.howToStart;
-      if (passed > this.howToDuration) {
-        game.state = "start";
-      }
+    const passed = millis() - this.howToStart;
+    if (passed > this.howToDuration) {
+      game.currentScreen = new StartScreen();
+    }
   }
 
   public onMousePressed() {
-      game.state = "start";
+    game.currentScreen = new StartScreen();
   }
 
   public draw() {
-    background(245, 200, 0);
-     imageMode(CENTER);
-    image(images.pink, width / 2, 150, 600, 500)
+    imageMode(CORNER);
+    image(images.howtoplaybg, 0, 0, width, height);
 
+    const baseY = height - 300;
 
     push();
-    fill(40);
     textAlign(CENTER, CENTER);
-    textSize(18);
+    textSize(26);
+    strokeWeight(4);
+    stroke(255, 105, 180);
+    fill(255);
+
     text(
       "Everything in this game is controlled\n" +
-        "with the Left Mouse Click" +
-        "Click and drag to aim." +
-        "Release to shoot." +
-        "Click mid-air to activate ability." +
-        "Have fun!",
-      width * 0.5,
-      height * 0.55,
+        "with the Left Mouse Click.\n" +
+        "Click and drag to aim.\n" +
+        "Release to shoot.",
+      0,
+      baseY,
+      width,
+      200,
     );
+
+    text(
+      "Click mid-air to activate ability.\n" + "Have fun!",
+      0,
+      baseY + 100,
+      width,
+      200,
+    );
+
     pop();
   }
 }

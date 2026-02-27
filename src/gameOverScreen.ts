@@ -10,7 +10,7 @@ class GameOverScreen implements IScreen {
 
   public draw() {
     imageMode(CORNER);
-    image(images.gameOver0, 0, width, height);
+    image(images.gameOver, 0, 0, width, height);
 
     push();
     fill(255, 0, 0);
@@ -26,10 +26,28 @@ class GameOverScreen implements IScreen {
 
     fill(255);
     noStroke();
-    textAlign;
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    text(
+      "Restart Game",
+      this.restartBtn.x + this.restartBtn.w / 2,
+      this.restartBtn.y + this.restartBtn.h / 2,
+    );
+    pop();
   }
 
   public onMousePressed() {
-    //knappar (restart)
+    if (this.hitRect(this.restartBtn)) {
+      game.currentScreen = new LevelSelect();
+    }
+  }
+
+  private hitRect(btn: { x: number; y: number; w: number; h: number }) {
+    return (
+      mouseX >= btn.x &&
+      mouseX <= btn.x + btn.w &&
+      mouseY >= btn.y &&
+      mouseY <= btn.y + btn.h
+    );
   }
 }
