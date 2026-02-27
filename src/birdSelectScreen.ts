@@ -63,6 +63,10 @@ class BirdSelectScreen implements IScreen {
 
         game.selectedBird = bird.id;
         game.selectedSprite = bird.sprite;
+        game.level = new Level();
+        game.state = "level";
+        game.state = "levelselect";
+        return;
         game.currentScreen = new Level();
         
       }

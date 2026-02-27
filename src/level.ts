@@ -2,9 +2,10 @@
 
 class Level implements IScreen {
   private entities: Entity[];
-  public isGameOver: boolean = false;
+ private id: number;
+  constructor(id: number = 0) {
+    this.id = id;
 
-  constructor() {
     this.entities = [
       new Player(game.selectedBird, game.selectedSprite),
       // varje pig får en slumpad bild från pigList
@@ -23,7 +24,34 @@ class Level implements IScreen {
       new Pole(900, height - 161 - 12 - 160, 112, 12),
     ];
   }
+public update() {
+for (let i = 0; i < this.entities.length; i++) {
+this.entities[i].update();
+}
 
+let pigsLeft = 0;
+for (let i = 0; i < this.entities.length; i++) {
+if (this.entities[i] instanceof Pig) pigsLeft++;
+}
+
+if (pigsLeft === 0) {
+game.stars[this.id] = 3;
+
+if (this.id < 9) {
+let found = false;
+for (let i = 0; i < game.unlocked.length; i++) {
+if (game.unlocked[i] === this.id + 1) found = true;
+}
+if (!found) game.unlocked.push(this.id + 1);
+}
+
+game.state = "levelselect";
+
+}
+    
+
+    
+    // kolla kollisioner mellan entiteterna.
   public getPigs() {
     return this.entities.filter((e) => e instanceof Pig);
   }
