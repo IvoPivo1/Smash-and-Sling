@@ -5,7 +5,7 @@ class Level {
   public isGameOver: boolean = false;
 
   constructor(entities: Entity[]) {
-    // Tar emot färdigbyggda entities istället för att skapa dem här
+    // Tar emot färdigbyggda entities
     this.entities = entities;
   }
 

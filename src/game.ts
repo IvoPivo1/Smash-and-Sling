@@ -8,6 +8,7 @@ class Game {
   public selectedSprite: p5.Image = images.birdImg;
   private gameOverScreen: GameOverScreen;
   private levelFactory: LevelFactory;
+  public currentLevel: number = 1;
 
   constructor() {
     this.state = "howto";
@@ -19,9 +20,9 @@ class Game {
     this.levelFactory = new LevelFactory();
   }
 
-  public startLevel() {
-    // Startar en ny level genom factoryn
-    this.level = this.levelFactory.createLevel();
+  public startLevel(levelNumber: number = this.currentLevel) {
+    // Startar en ny level genom factory
+    this.level = this.levelFactory.createLevel(levelNumber);
     this.state = "level";
   }
 

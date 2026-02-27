@@ -70,7 +70,7 @@ class BirdSelectScreen {
 
         game.selectedBird = bird.id;
         game.selectedSprite = bird.sprite;
-        game.startLevel();
+        game.startLevel(1);
       }
     }
   }
