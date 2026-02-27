@@ -70,7 +70,12 @@
 
         game.selectedBird = bird.id;
         game.selectedSprite = bird.sprite;
+<<<<<<< HEAD
         game.startLevel(1);
+=======
+        game.currentScreen = new Level();
+        
+>>>>>>> parent of 1d99083 (Merge pull request #27 from IvoPivo1/12-level-select)
       }
     }
   }

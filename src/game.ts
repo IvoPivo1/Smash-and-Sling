@@ -8,9 +8,12 @@ class Game {
   public currentScreen: IScreen;
   public selectedBird: number = 0;
   public selectedSprite: p5.Image = images.birdImg;
+<<<<<<< HEAD
   private gameOverScreen: GameOverScreen;
   private levelFactory: LevelFactory;
   public currentLevel: number = 1;
+=======
+>>>>>>> parent of 1d99083 (Merge pull request #27 from IvoPivo1/12-level-select)
 
   constructor() {
     this.state = "howto";
