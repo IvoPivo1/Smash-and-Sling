@@ -1,4 +1,7 @@
-/*this.entities = [
+class LevelFactory {
+  public createLevel(): Level {
+    // bygger listan med entities för leveln
+    const entites: Entity[] = [
       new Player(game.selectedBird, game.selectedSprite),
       // varje pig får en slumpad bild från pigList
       new Pig(955, height - 180 - 40, random(pigList)),
@@ -14,4 +17,8 @@
       new Pole(900, height - 154 - 12 - 154, 12, 120),
       new Pole(1000, height - 154 - 12 - 154, 12, 120),
       new Pole(900, height - 161 - 12 - 160, 112, 12),
-    ];*/
+    ];
+
+    return new Level(entites);
+  }
+}

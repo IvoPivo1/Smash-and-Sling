@@ -70,8 +70,7 @@ class BirdSelectScreen {
 
         game.selectedBird = bird.id;
         game.selectedSprite = bird.sprite;
-        game.level = new Level([]);
-        game.state = "level";
+        game.startLevel();
       }
     }
   }
