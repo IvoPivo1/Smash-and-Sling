@@ -18,9 +18,14 @@ class LevelFactory {
 
   // level 1
   private levelOne(): Level {
+    const bird = new Bird(
+      game.selectedBird,
+      game.selectedSprite
+    );
+
     // bygger listan med entities för leveln
     const entites: Entity[] = [
-      new Player(game.selectedBird, game.selectedSprite),
+      new Player(bird),
       // varje pig får en slumpad bild från pigList
       new Pig(955, height - 180 - 40, random(pigList)),
       new Pig(1055, height - 180 - 40, random(pigList)),
@@ -43,8 +48,13 @@ class LevelFactory {
 
   // Level 2
   private levelTwo(): Level {
+    const bird = new Bird(
+      game.selectedBird,
+      game.selectedSprite
+    );
+
     const entities: Entity[] = [
-      new Player(game.selectedBird, game.selectedSprite),
+      new Player(bird),
 
       // Todo
       new Pig(955, height - 180 - 40, random(pigList)),

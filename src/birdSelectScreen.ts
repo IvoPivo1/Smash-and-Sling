@@ -61,8 +61,13 @@ class BirdSelectScreen implements IScreen {
       if (d < bird.r) {
         if (!bird.unlocked) return; // klickar på låst gör inget
 
-        game.selectedBird = bird.id;
-        game.selectedSprite = bird.sprite;
+        game.selectedBirdObject = new Bird(
+          bird.id,
+          bird.sprite,
+          35, //radius
+          1.0, //power
+          1.0  //weight
+        )
         game.currentScreen = new LevelSelect();
         return;
       

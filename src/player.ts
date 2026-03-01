@@ -1,7 +1,10 @@
+/// <reference path="bird.ts" />
 /// <reference path="entity.ts" />
 
 class Player extends Entity implements IScreen{
-  radius: number = 35;
+  private bird: Bird;
+
+  radius: number;
   private dragDamping: number = 0.98;
 
   private isDragging: boolean = false;
@@ -10,10 +13,19 @@ class Player extends Entity implements IScreen{
   private startPos: p5.Vector;
   private dragPos: p5.Vector;
 
-  constructor(type: number, sprite: p5.Image) {
-    const radius = 35;
-    const position = createVector(272, height - 250);
-    super(sprite, position.x, position.y, radius * 2, radius * 2);
+  constructor(bird: Bird) {
+   const position = createVector(272, height -250);
+
+   super(
+    bird.sprite,
+    position.x,
+    position.y,
+    bird.radius * 2,
+    bird.radius * 2
+   );
+
+   this.bird = bird;
+   this.radius = bird.radius;
 
     this.startPos = position.copy();
     this.dragPos = position.copy();
