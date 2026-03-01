@@ -52,6 +52,12 @@ class Level implements IScreen {
           }
           if (!found) game.unlocked.push(this.id + 1);
         }
+        
+        if (this.id === 1){
+          if (game.unlockedBirds.indexOf(1) === -1){
+            game.unlockedBirds.push(1)
+          }
+        }
     }
 
     if (!this.getPlayer().alive) {
