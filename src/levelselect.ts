@@ -46,7 +46,8 @@ class LevelSelect implements IScreen {
 
       if (!this.isUnlocked(c.id)) continue;
 
-      game.currentScreen = new LevelFactory().createLevel(c.id + 1);
+      game.selectedLevel = c.id + 1;
+      game.currentScreen = new BirdSelectScreen();
        return;
     }
   }

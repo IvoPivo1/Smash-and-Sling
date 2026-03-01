@@ -4,10 +4,10 @@ class BirdSelectScreen implements IScreen {
   constructor() {
     // 4 fåglar, bara första upplåst
     this.birds = [
-      { x: 0, y: 0, r: 60, unlocked: true,  id: 0, sprite: images.birdImg },
-      { x: 0, y: 0, r: 60, unlocked: false, id: 1, sprite: images.bigBird },
-      { x: 0, y: 0, r: 60, unlocked: false, id: 2, sprite: images.iceBird },
-      { x: 0, y: 0, r: 60, unlocked: false, id: 3, sprite: images.purpleBird },
+      { x: 0, y: 0, r: 60, unlocked: game.unlockedBirds.indexOf(0) !== -1,  id: 0, sprite: images.birdImg },
+      { x: 0, y: 0, r: 60, unlocked: game.unlockedBirds.indexOf(1) !== -1, id: 1, sprite: images.bigBird },
+      { x: 0, y: 0, r: 60, unlocked: game.unlockedBirds.indexOf(2) !== -1, id: 2, sprite: images.iceBird },
+      { x: 0, y: 0, r: 60, unlocked: game.unlockedBirds.indexOf(3) !== -1, id: 3, sprite: images.purpleBird },
     ];
   }
 
@@ -61,14 +61,30 @@ class BirdSelectScreen implements IScreen {
       if (d < bird.r) {
         if (!bird.unlocked) return; // klickar på låst gör inget
 
-        game.selectedBirdObject = new Bird(
-          bird.id,
-          bird.sprite,
-          35, //radius
-          1.0, //power
-          1.0  //weight
-        )
-        game.currentScreen = new LevelSelect();
+        let selected: Bird;
+
+        switch (bird.id){
+          case 0:
+            selected = new Bird(0, bird.sprite, 35, 1.0, 1.0);
+            break;
+          case 1:
+            selected = new Bird(1, bird.sprite, 45, 1.3, 1.4); // större & starkare
+            break;
+          case 2:
+            selected = new Bird(2, bird.sprite, 30, 0.8, 0.7); // snabb men lätt
+            break;
+          case 3:
+            selected = new Bird(3, bird.sprite, 40, 1.6, 1.2); // tung & kraftfull
+            break;
+
+            default:
+              selected = new Bird(0, bird.sprite, 35, 1.0, 1.0)
+
+        }
+
+        game.selectedBirdObject = selected;
+
+        game.currentScreen = new LevelFactory().createLevel(game.selectedLevel)
         return;
       
       }
