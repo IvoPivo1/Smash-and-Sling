@@ -46,11 +46,8 @@ class LevelSelect implements IScreen {
 
       if (!this.isUnlocked(c.id)) continue;
 
-      game.currentScreen = new Level(c.id);
-      game.currentScreen = new Level();
-      game.currentScreen = new Level(c.id);
-      game.currentScreen = new Level();
-      return;
+      game.currentScreen = new LevelFactory().createLevel(c.id + 1);
+       return;
     }
   }
 
