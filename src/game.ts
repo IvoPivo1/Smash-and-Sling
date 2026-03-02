@@ -8,7 +8,10 @@ class Game {
   public currentScreen: IScreen;
   public selectedBird: number = 0;
   public selectedSprite: p5.Image = images.birdImg;
+  public selectedBirdObject: Bird | null = null;
+  public selectedLevel: number = 1;
   public unlocked: number[] = [0];
+  public unlockedBirds: number[] = [0];
   public stars: number[] = new Array(10).fill(0);
 
   constructor() {
@@ -21,7 +24,6 @@ class Game {
 
   public draw() {
     this.currentScreen.draw();
-
   }
 
   public onMousePressed() {
