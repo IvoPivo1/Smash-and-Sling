@@ -9,7 +9,7 @@ class HowToScreen implements IScreen {
   public update() {
     const passed = millis() - this.howToStart;
     if (passed > this.howToDuration) {
-      game.currentScreen = new StartScreen();
+    game.currentScreen = new StartScreen();
     }
   }
 

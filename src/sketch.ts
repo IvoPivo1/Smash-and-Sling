@@ -73,7 +73,6 @@ function setup() {
   ];
   music.mystery.setVolume(0.8);
   game = new Game();
-  game.currentScreen = new LevelSelect();
 }
 
 /**
@@ -83,10 +82,8 @@ function setup() {
  */
 function draw() {
   background(0);
-  if (game.currentScreen) {
-    game.currentScreen.update();
-    game.currentScreen.draw();
-  }
+  game.update();
+  game.draw();
 }
 
 /**
@@ -97,7 +94,6 @@ function windowResized() {
 }
 
 function mousePressed() {
-  if (game.currentScreen && game.currentScreen.onMousePressed) {
-    game.currentScreen.onMousePressed();
-  }
+  game.onMousePressed();
+ 
 }
