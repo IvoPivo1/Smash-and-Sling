@@ -3,6 +3,7 @@
 class Level implements IScreen {
   private entities: Entity[];
   private id: number;
+  private hasWon: boolean = false;
 
   constructor(entities: Entity[], id: number = 0) {
     this.id = id;
@@ -40,7 +41,8 @@ class Level implements IScreen {
     this.entities = this.entities.filter((entity) => entity.alive);
 
     // vinn
-    if (this.getPigs().length === 0) {
+    if (this.getPigs().length === 0 && !this.hasWon) {
+      this.hasWon = true;
       game.currentScreen = new WinningScreen();
       game.stars[this.id] = 3;
 
@@ -59,19 +61,49 @@ class Level implements IScreen {
       if (this.id === 3 && game.unlockedBirds.indexOf(3) === -1) {
         game.unlockedBirds.push(3);
       }
+      return;
     }
 
     // spelaren dör  då  visas GameOverScreen och restart level
-    if (!this.getPlayer()?.alive) {
+    if (!this.hasWon && !this.getPlayer() && game.selectedBirds.length === 0) {
       game.currentScreen = new GameOverScreen();
       return;
     }
+
+    const player = this.getPlayer();
+
+    if (player && player.isLaunched && player.position.y > height + 1000) {
+      game.selectedBirds.shift();
+
+      if (game.selectedBirds.length > 0) {
+        const nextBird = game.selectedBirds[0];
+        this.entities.push(new Player(nextBird));
+      } else {
+        game.currentScreen = new GameOverScreen();
+        return;
+      }
+    }
+
+    
   }
 
   public draw() {
     imageMode(CORNER);
     image(images.levelbg, 0, 0, width, height);
 
+  
+    for (let i = 0; i < game.selectedBirds.length; i++) {
+      const b = game.selectedBirds[i];
+      image(
+        b.sprite,
+        80 + i * 60, // X
+        height - 120, // Y
+        40,
+        40,
+      );
+    }
+
+ 
     for (let i = 0; i < this.entities.length; i++) {
       this.entities[i].draw();
     }

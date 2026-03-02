@@ -47,6 +47,12 @@ class LevelSelect implements IScreen {
       if (!this.isUnlocked(c.id)) continue;
 
       game.selectedLevel = c.id + 1;
+
+      if (game.selectedLevel === 1) game.maxBirdsAllowed = 1;
+      if (game.selectedLevel === 2) game.maxBirdsAllowed = 1;
+      if (game.selectedLevel === 3) game.maxBirdsAllowed = 2;
+      if (game.selectedLevel === 4) game.maxBirdsAllowed = 2;
+      if (game.selectedLevel === 5) game.maxBirdsAllowed = 3;
       game.currentScreen = new BirdSelectScreen();
       return;
     }
