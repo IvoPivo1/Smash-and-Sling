@@ -1,7 +1,7 @@
 /// <reference path="bird.ts" />
 /// <reference path="entity.ts" />
 
-class Player extends Entity implements IScreen{
+class Player extends Entity implements IScreen {
   private bird: Bird;
 
   radius: number;
@@ -14,18 +14,18 @@ class Player extends Entity implements IScreen{
   private dragPos: p5.Vector;
 
   constructor(bird: Bird) {
-   const position = createVector(272, height -250);
+    const position = createVector(272, height - 250);
 
-   super(
-    bird.sprite,
-    position.x,
-    position.y,
-    bird.radius * 2,
-    bird.radius * 2
-   );
+    super(
+      bird.sprite,
+      position.x,
+      position.y,
+      bird.radius * 2,
+      bird.radius * 2,
+    );
 
-   this.bird = bird;
-   this.radius = bird.radius;
+    this.bird = bird;
+    this.radius = bird.radius;
 
     this.startPos = position.copy();
     this.dragPos = position.copy();
@@ -78,10 +78,9 @@ class Player extends Entity implements IScreen{
 
     // Destroy om player faller under skärmen
     if (this.position.y > height + 1000) {
-      game.currentScreen = new LevelFactory().createLevel(1);
+      this.alive = false;
       return;
     }
-
 
     if (!this.isLaunched) return;
 

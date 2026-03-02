@@ -48,15 +48,13 @@ class LevelSelect implements IScreen {
 
       game.selectedLevel = c.id + 1;
       game.currentScreen = new BirdSelectScreen();
-       return;
+      return;
     }
   }
 
   private isUnlocked(id: number) {
-    for (let i = 0; i < game.unlocked.length; i++) {
-      if (game.unlocked[i] === id) return true;
-    }
-    return false;
+    if (id === 0) return true; // level 1 är alltid upplåst
+    return game.unlocked.indexOf(id) !== -1;
   }
 
   private drawStars(x: number, y: number, stars: number) {

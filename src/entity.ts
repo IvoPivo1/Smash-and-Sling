@@ -48,12 +48,14 @@ abstract class Entity {
 
     const margin = 300;
 
-    if (
-      this.position.x < -margin ||
-      this.position.x > width + margin ||
-      this.position.y > height + margin
-    ) {
-      this.destroy();
+    if (!(this instanceof Player)) {
+      if (
+        this.position.x < -margin ||
+        this.position.x > width + margin ||
+        this.position.y > height + margin
+      ) {
+        this.destroy();
+      }
     }
   }
 

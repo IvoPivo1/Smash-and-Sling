@@ -1,17 +1,24 @@
 class Bird {
-    public type: number;
-    public sprite: p5.Image;
-    public radius: number;
-    public power: number;
-    public weight: number;
+  public id: number;
+  public name: string;
+  public sprite: p5.Image;
+  public radius: number;
+  public power: number;
+  public weight: number;
 
-    constructor(type: number, sprite: p5.Image, radius =35, power = 1, weight = 1){
-        this.type = type;
-        this.sprite= sprite;
-        this.radius = radius;
-        this.power = power;
-        this.weight = weight;
-    }
-
-
+  constructor(
+    id: number,
+    name: string,
+    sprite: p5.Image,
+    radius: number,
+    power: number,
+    weight: number,
+  ) {
+    this.id = id;
+    this.name = name;
+    this.sprite = sprite;
+    this.radius = radius;
+    this.power = power;
+    this.weight = weight;
+  }
 }

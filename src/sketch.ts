@@ -20,6 +20,7 @@ let images: {
   bigBird: p5.Image;
   iceBird: p5.Image;
   purpleBird: p5.Image;
+  gameOver: p5.Image;
 };
 
 let musicOn: boolean = true;
@@ -50,6 +51,7 @@ function preload() {
     bigBird: loadImage("/assets/images/bigBird.png"),
     iceBird: loadImage("/assets/images/iceBird.png"),
     purpleBird: loadImage("/assets/images/purpleBird.png"),
+    gameOver: loadImage("/assets/images/gameover.jpg"),
   };
 }
 
@@ -71,6 +73,7 @@ function setup() {
   ];
   music.mystery.setVolume(0.8);
   game = new Game();
+  game.currentScreen = new LevelSelect();
 }
 
 /**
@@ -80,8 +83,10 @@ function setup() {
  */
 function draw() {
   background(0);
-  game.update();
-  game.draw();
+  if (game.currentScreen) {
+    game.currentScreen.update();
+    game.currentScreen.draw();
+  }
 }
 
 /**
@@ -92,5 +97,7 @@ function windowResized() {
 }
 
 function mousePressed() {
-  game.onMousePressed();
+  if (game.currentScreen && game.currentScreen.onMousePressed) {
+    game.currentScreen.onMousePressed();
+  }
 }
