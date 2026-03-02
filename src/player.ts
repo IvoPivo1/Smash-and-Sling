@@ -78,7 +78,7 @@ class Player extends Entity implements IScreen {
 
     // Destroy om player faller under skärmen
     if (this.position.y > height + 1000) {
-      game.currentScreen = new LevelFactory().createLevel(1);
+      this.alive = false;
       return;
     }
 

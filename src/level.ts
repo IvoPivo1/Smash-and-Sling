@@ -14,7 +14,7 @@ class Level implements IScreen {
   }
 
   private getPlayer() {
-    return this.entities.find((e) => e instanceof Player) as Player;
+    return this.entities.find((e) => e instanceof Player);
   }
 
   public update() {
@@ -62,7 +62,7 @@ class Level implements IScreen {
     }
 
     // spelaren dör  då  visas GameOverScreen och restart level
-    if (!this.getPlayer().alive) {
+    if (!this.getPlayer()?.alive) {
       game.currentScreen = new GameOverScreen();
       return;
     }
