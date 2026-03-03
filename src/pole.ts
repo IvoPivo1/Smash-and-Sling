@@ -8,12 +8,15 @@ class Pole extends Entity {
     height: number,
     gravity = 0.4,
   ) {
+    // Entity använder center koordinater
     const cx = x + width / 2;
     const cy = y + height / 2;
+    // Skickar vidare till Entity
     super(undefined, cx, cy, width, height, gravity);
   }
 
   public onCollision(other: Entity): void {
+    // Om spelaren träffar stolpen förstör stolpen
     if (other instanceof Player) {
       this.destroy();
     } else if (other instanceof Pole && this.position.y !== other.position.y) {
