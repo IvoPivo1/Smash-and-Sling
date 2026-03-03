@@ -8,12 +8,15 @@ class Pole extends Entity {
     height: number,
     gravity = 0.4,
   ) {
+    // Entity använder center koordinater
     const cx = x + width / 2;
     const cy = y + height / 2;
+    // Skickar vidare till Entity
     super(undefined, cx, cy, width, height, gravity);
   }
 
   public onCollision(other: Entity): void {
+    // Om spelaren träffar stolpen, förstör stolpen
     if (other instanceof Player) {
       this.destroy();
     } else if (other instanceof Pole && this.position.y !== other.position.y) {
@@ -28,5 +31,40 @@ class Pole extends Entity {
     rectMode(CENTER);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
+  }
+}
+
+class BlackPole extends Pole {
+  constructor(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    gravity = 0,
+  ) {
+    super(x, y, width, height, gravity);
+  }
+
+  public override draw() {
+    push();
+    rectMode(CENTER);
+    fill(0, 0, 0);
+    rect(this.position.x, this.position.y, this.size.x, this.size.y);
+    pop();
+  }
+
+  public override onCollision(other: Entity): void {
+    if (other instanceof Player) {
+      // studsa tillbaka
+      other.bounceBack(
+        -other.getVelocity().x * 0.8,
+        -other.getVelocity().y * 0.8,
+      );
+
+      return;
+    }
+
+    // Annars gör som en vanlig pole
+    super.onCollision(other);
   }
 }

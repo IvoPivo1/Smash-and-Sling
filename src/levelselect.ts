@@ -57,10 +57,8 @@ class LevelSelect implements IScreen {
       return;
     }
   }
-
   private isUnlocked(id: number) {
-    if (id === 0) return true; // level 1 är alltid upplåst
-    return game.unlocked.indexOf(id) !== -1;
+    return true;
   }
 
   private drawStars(x: number, y: number, stars: number) {
