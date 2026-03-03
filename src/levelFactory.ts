@@ -27,7 +27,7 @@ class LevelFactory {
       new Pig(955, 260, random(pigList)),
 
       // x, y, width, height
-      new Pole(900, 550, 12, 500, 0),
+      new BlackPole(900, 550, 12, 500, 0),
       new Pole(1000, 550, 12, 500, 0),
       new Pole(900, 550, 112, 12),
     ];

@@ -33,3 +33,23 @@ class Pole extends Entity {
     pop();
   }
 }
+
+class BlackPole extends Pole {
+  constructor(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    gravity = 0,
+  ) {
+    super(x, y, width, height, gravity);
+  }
+
+  public override draw() {
+    push();
+    rectMode(CENTER);
+    fill(0, 0, 0);
+    rect(this.position.x, this.position.y, this.size.x, this.size.y);
+    pop();
+  }
+}
