@@ -16,7 +16,7 @@ class Pole extends Entity {
   }
 
   public onCollision(other: Entity): void {
-    // Om spelaren träffar stolpen förstör stolpen
+    // Om spelaren träffar stolpen, förstör stolpen
     if (other instanceof Player) {
       this.destroy();
     } else if (other instanceof Pole && this.position.y !== other.position.y) {
@@ -51,5 +51,20 @@ class BlackPole extends Pole {
     fill(0, 0, 0);
     rect(this.position.x, this.position.y, this.size.x, this.size.y);
     pop();
+  }
+
+  public override onCollision(other: Entity): void {
+    if (other instanceof Player) {
+      // studsa tillbaka
+      other.bounceBack(
+        -other.getVelocity().x * 0.8,
+        -other.getVelocity().y * 0.8,
+      );
+
+      return;
+    }
+
+    // Annars gör som en vanlig pole
+    super.onCollision(other);
   }
 }

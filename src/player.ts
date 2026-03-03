@@ -12,6 +12,15 @@ class Player extends Entity implements IScreen {
 
   private startPos: p5.Vector;
   private dragPos: p5.Vector;
+  // Används av blackPole för studseffekt
+  public getVelocity() {
+    return this.velocity;
+  }
+  // Sätter ny hastighet när spelaren studsar (blackPole)
+  public bounceBack(x: number, y: number) {
+    this.velocity.x = x;
+    this.velocity.y = y;
+  }
 
   constructor(bird: Bird) {
     const position = createVector(272, height - 250);
