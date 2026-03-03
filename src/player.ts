@@ -6,7 +6,7 @@ class Player extends Entity implements IScreen {
   private abilityUsed: boolean = false;
   radius: number;
   private dragDamping: number = 0.98;
- 
+
   private isDragging: boolean = false;
   public isLaunched: boolean = false;
 
@@ -81,17 +81,16 @@ class Player extends Entity implements IScreen {
   }
 
   private handleAbilities() {
-
-    if (!this.abilityUsed && this.bird.ability === "dash"){
-      if (mouseIsPressed){
+    if (!this.abilityUsed && this.bird.ability === "dash") {
+      if (mouseIsPressed) {
         this.velocity.x *= 2.5;
         this.velocity.y *= 0.8;
         this.abilityUsed = true;
       }
     }
 
-    if (!this.abilityUsed && this.bird.ability === "split"){
-      if (mouseIsPressed){
+    if (!this.abilityUsed && this.bird.ability === "split") {
+      if (mouseIsPressed) {
         this.splitIntoThree();
         this.abilityUsed = true;
         this.alive = false;
@@ -99,16 +98,15 @@ class Player extends Entity implements IScreen {
       }
     }
 
-    if (!this.abilityUsed && this.bird.ability === "bomb"){
-      if (mouseIsPressed){
+    if (!this.abilityUsed && this.bird.ability === "bomb") {
+      if (mouseIsPressed) {
         this.explode();
         this.abilityUsed = true;
         this.alive = false;
         return;
       }
-
+    }
   }
-}
 
   update() {
     this.mousePressed();
@@ -121,7 +119,7 @@ class Player extends Entity implements IScreen {
       return;
     }
 
-    if (this.isLaunched){
+    if (this.isLaunched) {
       this.handleAbilities();
     }
 
@@ -153,9 +151,11 @@ class Player extends Entity implements IScreen {
   }
 
   private splitIntoThree() {
-    const angle = [-0.3, 0, 0.3];
-    
-    for (let a of angle) {
+    if (!game.currentLevel) return;
+
+    const angles = [-0.3, 0, 0.3];
+
+    for (let a of angles) {
       const newVel = this.velocity.copy().rotate(a).mult(0.9);
 
       const smallBird = new Player(
@@ -166,43 +166,78 @@ class Player extends Entity implements IScreen {
           this.bird.radius * 0.6,
           this.bird.power * 0.7,
           this.bird.weight * 0.7,
-          this.bird.ability,
-        )
+          "none", 
+        ),
       );
+
       smallBird.position = this.position.copy();
       smallBird.velocity = newVel;
       smallBird.isLaunched = true;
-      if (game.currentLevel) {
+
       game.currentLevel.entities.push(smallBird);
-      }
-      this.alive = false;
-      game.selectedBirds.shift();
     }
+
+    this.alive = false;
+
+    game.selectedBirds.shift();
+
+    game.splitDelayActive = true;
+
+    setTimeout(() => {
+      game.splitDelayActive = false;
+      const pigsLeft = game.currentLevel?.getPigs().length ?? 0;
+
+      if (pigsLeft === 0) {
+        game.currentScreen = new WinningScreen();
+      } else {
+        game.currentScreen = new GameOverScreen();
+      }
+    }, 2000);
   }
 
   private explode() {
-  if (!game.currentLevel) return;
+    if (!game.currentLevel) return;
 
-  const explosionRadius = 150;
+    const explosionRadius = 250;
 
-  for (let e of game.currentLevel.entities) {
-    if (e === this) continue;
+    for (let e of game.currentLevel.entities) {
+      if (e === this) continue;
 
-    const d = dist(this.position.x, this.position.y, e.position.x, e.position.y);
+      const d = dist(
+        this.position.x,
+        this.position.y,
+        e.position.x,
+        e.position.y,
+      );
 
-    if (d < explosionRadius) {
-      const force = p5.Vector.sub(e.position, this.position)
-        .setMag((explosionRadius - d) * 0.2);
+      if (d < explosionRadius) {
+        const force = p5.Vector.sub(e.position, this.position).setMag(
+          (explosionRadius - d) * 0.2,
+        );
 
-      e.applyForce(force);
+        e.applyForce(force);
 
-      if (e instanceof Pig) e.alive = false;
-      if (e instanceof Pole) e.alive = false;
+        if (e instanceof Pig) e.alive = false;
+        if (e instanceof Pole) e.alive = false;
+      }
     }
+
+    this.alive = false;
+    game.selectedBirds.shift();
+
+    if (game.selectedBirds.length > 0) return;
+
+    game.bombDelayActive = true;
+
+    setTimeout(() => {
+      game.bombDelayActive = false;
+      const pigsLeft = game.currentLevel?.getPigs().length ?? 0;
+
+      if (pigsLeft === 0) {
+        game.currentScreen = new WinningScreen();
+      } else {
+        game.currentScreen = new GameOverScreen();
+      }
+    }, 2000);
   }
-
-  this.alive = false;
-  game.selectedBirds.shift();
-}
-
 }

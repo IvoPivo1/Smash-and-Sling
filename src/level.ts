@@ -66,13 +66,32 @@ class Level implements IScreen {
       return;
     }
 
-    // spelaren dör  då  visas GameOverScreen och restart level
-    if (!this.hasWon && !this.getPlayer() && game.selectedBirds.length === 0) {
-      game.currentScreen = new GameOverScreen();
-      return;
-    }
+     // Om ingen player finns
+if (!this.hasWon && !this.getPlayer()) {
+
+  // Finns det fler fåglar i kön? → ladda nästa
+  if (game.selectedBirds.length > 0) {
+    const nextBird = game.selectedBirds[0];
+    this.entities.push(new Player(nextBird));
+    return;
+  }
+
+  // Om split/bomb-delay är aktiv → vänta
+  if (game.splitDelayActive || game.bombDelayActive) return;
+
+  // Annars → Game Over
+  game.currentScreen = new GameOverScreen();
+  return;
+}
+
 
     const player = this.getPlayer();
+
+    if (!player && game.selectedBirds.length > 0) {
+      const nextBird = game.selectedBirds[0];
+      this.entities.push(new Player(nextBird));
+      return;
+    }
 
     if (player && player.isLaunched && player.position.y > height + 1000) {
       game.selectedBirds.shift();

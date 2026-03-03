@@ -10,6 +10,8 @@ class Game {
   public selectedBird: number = 0;
   public selectedSprite: p5.Image = images.birdImg;
   public selectedBirdObject: Bird | null = null;
+  public bombDelayActive: boolean = false;
+  public splitDelayActive: boolean = false;
   public selectedLevel: number = 1;
   public selectedBirds: Bird[] = [];
   public maxBirdsAllowed: number = 1;
