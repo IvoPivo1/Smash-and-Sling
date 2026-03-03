@@ -44,7 +44,7 @@ class LevelFactory {
       // varje pig får en slumpad bild från pigList
       new Pig(955, 260, random(pigList)),
 
-      // x, y, width, height
+      // x, y, width, height, gravity
       new Pole(900, 550, 12, 500, 0),
       new Pole(1000, 550, 12, 500, 0),
       new Pole(900, 550, 112, 12),
@@ -58,7 +58,7 @@ class LevelFactory {
     const entities: Entity[] = [
       new Player(game.selectedBirds[0]),
 
-      //   new Pig(955, 260, random(pigList)),
+      new Pig(955, 260, random(pigList)),
       new Pig(955, 580, random(pigList)),
 
       new BlackPole(900, 600, 12, 500, 0),
