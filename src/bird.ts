@@ -5,6 +5,7 @@ class Bird {
   public radius: number;
   public power: number;
   public weight: number;
+  public ability: string;
 
   constructor(
     id: number,
@@ -13,6 +14,7 @@ class Bird {
     radius: number,
     power: number,
     weight: number,
+    ability: string,
   ) {
     this.id = id;
     this.name = name;
@@ -20,5 +22,6 @@ class Bird {
     this.radius = radius;
     this.power = power;
     this.weight = weight;
+    this.ability = ability;
   }
 }

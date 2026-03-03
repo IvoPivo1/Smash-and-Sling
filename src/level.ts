@@ -1,13 +1,15 @@
 /// <reference path="entity.ts" />
 
 class Level implements IScreen {
-  private entities: Entity[];
+  public entities: Entity[];
   private id: number;
   private hasWon: boolean = false;
 
   constructor(entities: Entity[], id: number = 0) {
     this.id = id;
     this.entities = entities;
+
+    game.currentLevel = this;
   }
 
   public getPigs() {

@@ -120,20 +120,20 @@ class BirdSelectScreen implements IScreen {
 
         switch (bird.id) {
           case 0:
-            selected = new Bird(0, "birdImg", bird.sprite, 35, 1.0, 1.0);
+            selected = new Bird(0, "birdImg", bird.sprite, 35, 1.0, 1.0, "none");
             break;
           case 1:
-            selected = new Bird(1, "bigBird", bird.sprite, 45, 1.3, 1.4); // större & starkare
+            selected = new Bird(1, "bigBird", bird.sprite, 45, 1.3, 1.4, "bomb"); // större & starkare
             break;
           case 2:
-            selected = new Bird(2, "iceBird", bird.sprite, 30, 0.8, 0.7); // snabb men lätt
+            selected = new Bird(2, "iceBird", bird.sprite, 30, 0.8, 0.7, "dash" ); // snabb men lätt
             break;
           case 3:
-            selected = new Bird(3, "purpleBird", bird.sprite, 40, 1.6, 1.2); // tung & kraftfull
+            selected = new Bird(3, "purpleBird", bird.sprite, 40, 1.6, 1.2, "split"); // tung & kraftfull
             break;
 
           default:
-            selected = new Bird(0, "birdImg", bird.sprite, 35, 1.0, 1.0);
+            selected = new Bird(0, "birdImg", bird.sprite, 35, 1.0, 1.0, "none");
         }
         
         const already = game.selectedBirds.find(b => b.id === bird.id);

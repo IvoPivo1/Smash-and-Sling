@@ -70,7 +70,7 @@ class LevelFactory {
       new Pole(900, 500, 112, 12),
     ];
 
-    return new Level(entities, 0);
+    return new Level(entities, 1);
   }
 
   // level 3
@@ -98,7 +98,7 @@ class LevelFactory {
       new Pole(1300, 500, 112, 12),
     ];
 
-    return new Level(entities, 0);
+    return new Level(entities, 2);
   }
 
   // level 4
@@ -134,7 +134,7 @@ class LevelFactory {
       new Pole(900, 700, 12, 200, 0),
     ];
 
-    return new Level(entities, 3);
+    return new Level(entities, 4);
   }
 
   // level 6
@@ -146,7 +146,7 @@ class LevelFactory {
       new Pole(900, 700, 12, 200, 0),
     ];
 
-    return new Level(entities, 3);
+    return new Level(entities, 5);
   }
 
   // level 7
@@ -158,7 +158,7 @@ class LevelFactory {
       new Pole(900, 700, 12, 200, 0),
     ];
 
-    return new Level(entities, 3);
+    return new Level(entities, 6);
   }
 
   // level 8
@@ -170,7 +170,7 @@ class LevelFactory {
       new Pole(900, 700, 12, 200, 0),
     ];
 
-    return new Level(entities, 3);
+    return new Level(entities, 7);
   }
 
   // level 9
@@ -182,7 +182,7 @@ class LevelFactory {
       new Pole(900, 700, 12, 200, 0),
     ];
 
-    return new Level(entities, 3);
+    return new Level(entities, 8);
   }
 
   // level 10
@@ -194,6 +194,6 @@ class LevelFactory {
       new Pole(900, 700, 12, 200, 0),
     ];
 
-    return new Level(entities, 3);
+    return new Level(entities, 9);
   }
 }
