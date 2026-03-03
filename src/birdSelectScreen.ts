@@ -9,6 +9,8 @@ class BirdSelectScreen implements IScreen {
   }[];
 
   constructor() {
+
+    game.selectedBirds = [];
     // 4 fåglar, bara första upplåst
     this.birds = [
       {
@@ -67,6 +69,17 @@ class BirdSelectScreen implements IScreen {
     text("Choose Your Bird", width / 2, 120);
     pop();
 
+    push();
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    fill(255);
+    text(
+      `Choose up to ${game.maxBirdsAllowed} birds (${game.selectedBirds.length} selected)`,
+      width / 2,
+      180
+    );
+    pop();
+
     // RITA ALLA FÅGLAR
     for (const bird of this.birds) {
       push();
@@ -83,6 +96,13 @@ class BirdSelectScreen implements IScreen {
         fill(255);
         textSize(20);
         text("LOCKED", bird.x, bird.y);
+      }
+
+      if (game.selectedBirds.find(b=> b.id === bird.id)) {
+        noFill();
+        stroke(255, 255, 0);
+        strokeWeight(6);
+        circle(bird.x, bird.y, bird.r * 2 + 10);
       }
 
       pop();
@@ -115,10 +135,21 @@ class BirdSelectScreen implements IScreen {
           default:
             selected = new Bird(0, "birdImg", bird.sprite, 35, 1.0, 1.0);
         }
+        
+        const already = game.selectedBirds.find(b => b.id === bird.id);
+        if (already) {
+          game.selectedBirds = game.selectedBirds.filter(b => b.id !== bird.id);
+          return;
+        }
 
-        game.selectedBirdObject = selected;
+        if (game.selectedBirds.length >= game.maxBirdsAllowed) return;
 
-        game.currentScreen = new LevelFactory().createLevel(game.selectedLevel);
+        game.selectedBirds.push(selected);
+
+        if (game.selectedBirds.length === game.maxBirdsAllowed) {
+          game.currentScreen = new LevelFactory().createLevel(game.selectedLevel);
+        }
+
         return;
       }
     }

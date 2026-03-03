@@ -10,6 +10,8 @@ class Game {
   public selectedSprite: p5.Image = images.birdImg;
   public selectedBirdObject: Bird | null = null;
   public selectedLevel: number = 1;
+  public selectedBirds: Bird[] = [];
+  public maxBirdsAllowed: number = 1;
   public unlocked: number[] = [0];
   public unlockedBirds: number[] = [0];
   public stars: number[] = new Array(10).fill(0);

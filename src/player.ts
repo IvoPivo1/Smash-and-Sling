@@ -6,9 +6,9 @@ class Player extends Entity implements IScreen {
 
   radius: number;
   private dragDamping: number = 0.98;
-
+ 
   private isDragging: boolean = false;
-  private isLaunched: boolean = false;
+  public isLaunched: boolean = false;
 
   private startPos: p5.Vector;
   private dragPos: p5.Vector;

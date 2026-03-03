@@ -9,29 +9,29 @@ class LevelFactory {
 
       case 3:
         return this.levelThree();
+
       case 4:
         return this.levelFour();
-      /*
+
       case 5:
         return this.levelFive();
-    }
-    
-     case 6:
+
+      case 6:
         return this.levelSix();
+
+      case 7:
+        return this.levelSeven();
+
+      case 8:
+        return this.levelEight();
+
+      case 9:
+        return this.levelNine();
+
+      case 10:
+        return this.levelTen();
     }
-     case 7:
-        return this.levelFive();
-    }
-     case 8:
-        return this.levelFive();
-    }
-     case 9:
-        return this.levelFive();
-    }
-     case 10:
-        return this.levelFive();
-    }*/
-    }
+
     return this.levelOne();
   }
 
@@ -39,7 +39,7 @@ class LevelFactory {
   private levelOne(): Level {
     // bygger listan med entities för leveln
     const entities: Entity[] = [
-      new Player(game.selectedBirdObject!),
+      new Player(game.selectedBirds[0]),
 
       // varje pig får en slumpad bild från pigList
       new Pig(955, 260, random(pigList)),
@@ -56,7 +56,7 @@ class LevelFactory {
   // level 2
   private levelTwo(): Level {
     const entities: Entity[] = [
-      new Player(game.selectedBirdObject!),
+      new Player(game.selectedBirds[0]),
 
       //   new Pig(955, 260, random(pigList)),
       new Pig(955, 580, random(pigList)),
@@ -76,7 +76,12 @@ class LevelFactory {
   // level 3
   private levelThree(): Level {
     const entities: Entity[] = [
-      new Player(game.selectedBirdObject!),
+      new Player(game.selectedBirds[0]),
+      // varje pig får en slumpad bild från pigList
+      new Pig(955, height - 180 - 40, random(pigList)),
+      new Pig(1055, height - 180 - 40, random(pigList)),
+      new Pig(1155, height - 280 - 40, random(pigList)),
+      new Pig(953, height - 312 - 40, random(pigList)),
 
       new Pig(1350, 260, random(pigList)),
       new Pig(1350, 580, random(pigList)),
@@ -99,7 +104,7 @@ class LevelFactory {
   // level 4
   private levelFour(): Level {
     const entities: Entity[] = [
-      new Player(game.selectedBirdObject!),
+      new Player(game.selectedBirds[0]),
 
       new Pig(955, 680, random(pigList)),
       new Pig(1055, 680, random(pigList)),
@@ -117,6 +122,78 @@ class LevelFactory {
       new Pole(900, 567, 112, 12),
     ];
 
-    return new Level(entities, 0);
+    return new Level(entities, 3);
+  }
+
+  // level 5
+  private levelFive(): Level {
+    const entities: Entity[] = [
+      new Player(game.selectedBirds[0]),
+
+      new Pig(955, 680, random(pigList)),
+      new Pole(900, 700, 12, 200, 0),
+    ];
+
+    return new Level(entities, 3);
+  }
+
+  // level 6
+  private levelSix(): Level {
+    const entities: Entity[] = [
+      new Player(game.selectedBirds[0]),
+
+      new Pig(955, 680, random(pigList)),
+      new Pole(900, 700, 12, 200, 0),
+    ];
+
+    return new Level(entities, 3);
+  }
+
+  // level 7
+  private levelSeven(): Level {
+    const entities: Entity[] = [
+      new Player(game.selectedBirds[0]),
+
+      new Pig(955, 680, random(pigList)),
+      new Pole(900, 700, 12, 200, 0),
+    ];
+
+    return new Level(entities, 3);
+  }
+
+  // level 8
+  private levelEight(): Level {
+    const entities: Entity[] = [
+      new Player(game.selectedBirds[0]),
+
+      new Pig(955, 680, random(pigList)),
+      new Pole(900, 700, 12, 200, 0),
+    ];
+
+    return new Level(entities, 3);
+  }
+
+  // level 9
+  private levelNine(): Level {
+    const entities: Entity[] = [
+      new Player(game.selectedBirds[0]),
+
+      new Pig(955, 680, random(pigList)),
+      new Pole(900, 700, 12, 200, 0),
+    ];
+
+    return new Level(entities, 3);
+  }
+
+  // level 10
+  private levelTen(): Level {
+    const entities: Entity[] = [
+      new Player(game.selectedBirds[0]),
+
+      new Pig(955, 680, random(pigList)),
+      new Pole(900, 700, 12, 200, 0),
+    ];
+
+    return new Level(entities, 3);
   }
 }
