@@ -10,7 +10,8 @@ public currentLevel: Level | null = null;
 public selectedBird: number = 0;
 public selectedSprite: p5.Image = images.birdImg;
 public selectedBirdObject: Bird | null = null;
-
+public explosions: Explosion[] = [];
+public dashTrials: DashTrail [] = [];
 public selectedLevel: number = 1;
 public selectedBirds: Bird[] = [];
 public maxBirdsAllowed: number = 1;

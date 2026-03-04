@@ -86,7 +86,12 @@ class Player extends Entity implements IScreen {
   private handleAbilities() {
     if (!this.abilityUsed && this.bird.ability === "dash") {
       if (mouseIsPressed) {
-        this.velocity.x *= 2.5;
+
+        game.dashTrials.push(
+          new DashTrail(this.position.x, this.position.y, this.velocity, color(255, 255, 100)),
+        );
+
+        this.velocity.x *= 2;
         this.velocity.y *= 0.8;
         this.abilityUsed = true;
       }
@@ -148,7 +153,7 @@ class Player extends Entity implements IScreen {
     // Draw slingshot band while dragging
     if (this.isDragging) {
       push();
-      stroke(60, 40, 20);
+      stroke(112, 0, 0);
       strokeWeight(6);
       line(this.startPos.x, this.startPos.y, this.position.x, this.position.y);
       pop();
@@ -206,6 +211,10 @@ class Player extends Entity implements IScreen {
     if (!game.currentLevel) return;
 
     const explosionRadius = 250;
+
+    game.explosions.push(
+      new Explosion(this.position.x, this.position.y, color(255, 150, 0)),
+    )
 
     for (let e of game.currentLevel.entities) {
       if (e === this) continue;
