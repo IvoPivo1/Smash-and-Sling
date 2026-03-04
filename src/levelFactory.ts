@@ -35,6 +35,7 @@ class LevelFactory {
     return this.levelOne();
   }
 
+  // level 1
   private levelOne(): Level {
     // bygger listan med entities för leveln
     const entities: Entity[] = [
@@ -121,6 +122,36 @@ class LevelFactory {
     const entities: Entity[] = [
       new Player(game.selectedBirds[0]),
 
+      new Pig(1010, 680, random(pigList)),
+      new Pig(1090, 680, random(pigList)),
+      new Pig(1050, 590, random(pigList)),
+      new Pig(1050, 450, random(pigList)),
+
+      new Pole(900, 700, 12, 220, 0),
+      new Pole(1000, 700, 12, 220, 0),
+      new Pole(1100, 700, 12, 220, 0),
+      new Pole(1200, 700, 12, 220, 0),
+      new Pole(900, 700, 312, 12),
+
+      new Pole(980, 610, 12, 100, 0),
+      new Pole(1130, 610, 12, 100, 0),
+      new Pole(980, 610, 162, 12),
+
+      new BlackPole(950, 640, 12, 140, 0),
+      new BlackPole(1180, 640, 12, 140, 0),
+
+      new Pole(1010, 500, 12, 120, 0),
+      new Pole(1090, 500, 12, 120, 0),
+      new Pole(1010, 500, 92, 12),
+    ];
+
+    return new Level(entities, 4);
+  }
+
+  // level 6
+  private levelSix(): Level {
+    const entities: Entity[] = [
+      new Player(game.selectedBirds[0]),
       new Pig(955, 680, random(pigList)),
       new Pig(1055, 680, random(pigList)),
       new Pig(1155, 580, random(pigList)),
@@ -137,18 +168,6 @@ class LevelFactory {
       new Pole(900, 567, 112, 12),
     ];
 
-    return new Level(entities, 4);
-  }
-
-  // level 6
-  private levelSix(): Level {
-    const entities: Entity[] = [
-      new Player(game.selectedBirds[0]),
-
-      new Pig(955, 680, random(pigList)),
-      new Pole(900, 700, 12, 200, 0),
-    ];
-
     return new Level(entities, 5);
   }
 
@@ -157,8 +176,40 @@ class LevelFactory {
     const entities: Entity[] = [
       new Player(game.selectedBirds[0]),
 
-      new Pig(955, 680, random(pigList)),
-      new Pole(900, 700, 12, 200, 0),
+      // Vänster, 1 pig
+      new Pig(900, 560, random(pigList)),
+
+      new BlackPole(760, 680, 12, 220, 0),
+      new Pole(840, 720, 12, 240, 0),
+      new Pole(940, 720, 12, 240, 0),
+      new Pole(840, 600, 112, 12),
+
+      // Mitten, 2 pigs
+      new Pig(1110, 680, random(pigList)),
+      new Pig(1110, 560, random(pigList)),
+
+      new Pole(1040, 740, 12, 240, 0),
+      new Pole(1180, 740, 12, 240, 0),
+      new Pole(1040, 740, 152, 12),
+      new BlackPole(1000, 650, 12, 180, 0),
+      new BlackPole(1220, 650, 12, 180, 0),
+      new Pole(1060, 620, 12, 130, 0),
+      new Pole(1160, 620, 12, 130, 0),
+      new Pole(1060, 620, 112, 12),
+
+      // Höger, 2 pigs
+      new Pig(1370, 720, random(pigList)),
+      new Pig(1370, 520, random(pigList)),
+
+      new Pole(1320, 740, 12, 260, 0),
+      new Pole(1420, 740, 12, 260, 0),
+      new Pole(1320, 740, 112, 12),
+      new Pole(1340, 600, 12, 150, 0),
+      new Pole(1400, 600, 12, 150, 0),
+      new Pole(1340, 600, 72, 12),
+
+      // sista svarta pole längst ut
+      new BlackPole(1460, 670, 12, 200, 0),
     ];
 
     return new Level(entities, 6);
@@ -166,36 +217,21 @@ class LevelFactory {
 
   // level 8
   private levelEight(): Level {
-    const entities: Entity[] = [
-      new Player(game.selectedBirds[0]),
-
-      new Pig(955, 680, random(pigList)),
-      new Pole(900, 700, 12, 200, 0),
-    ];
+    const entities: Entity[] = [new Player(game.selectedBirds[0])];
 
     return new Level(entities, 7);
   }
 
   // level 9
   private levelNine(): Level {
-    const entities: Entity[] = [
-      new Player(game.selectedBirds[0]),
-
-      new Pig(955, 680, random(pigList)),
-      new Pole(900, 700, 12, 200, 0),
-    ];
+    const entities: Entity[] = [new Player(game.selectedBirds[0])];
 
     return new Level(entities, 8);
   }
 
   // level 10
   private levelTen(): Level {
-    const entities: Entity[] = [
-      new Player(game.selectedBirds[0]),
-
-      new Pig(955, 680, random(pigList)),
-      new Pole(900, 700, 12, 200, 0),
-    ];
+    const entities: Entity[] = [new Player(game.selectedBirds[0])];
 
     return new Level(entities, 9);
   }

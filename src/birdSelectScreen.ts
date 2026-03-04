@@ -9,7 +9,6 @@ class BirdSelectScreen implements IScreen {
   }[];
 
   constructor() {
-
     game.selectedBirds = [];
     // 4 fåglar, bara första upplåst
     this.birds = [
@@ -76,7 +75,7 @@ class BirdSelectScreen implements IScreen {
     text(
       `Choose up to ${game.maxBirdsAllowed} birds (${game.selectedBirds.length} selected)`,
       width / 2,
-      180
+      180,
     );
     pop();
 
@@ -98,7 +97,7 @@ class BirdSelectScreen implements IScreen {
         text("LOCKED", bird.x, bird.y);
       }
 
-      if (game.selectedBirds.find(b=> b.id === bird.id)) {
+      if (game.selectedBirds.find((b) => b.id === bird.id)) {
         noFill();
         stroke(255, 255, 0);
         strokeWeight(6);
@@ -120,25 +119,67 @@ class BirdSelectScreen implements IScreen {
 
         switch (bird.id) {
           case 0:
-            selected = new Bird(0, "birdImg", bird.sprite, 35, 1.0, 1.0, "none");
+            selected = new Bird(
+              0,
+              "birdImg",
+              bird.sprite,
+              35,
+              1.0,
+              1.0,
+              "none",
+            );
             break;
           case 1:
-            selected = new Bird(1, "bigBird", bird.sprite, 45, 1.3, 1.4, "bomb"); // större & starkare
+            selected = new Bird(
+              1,
+              "bigBird",
+              bird.sprite,
+              45,
+              1.3,
+              1.4,
+              "bomb",
+            ); // större & starkare
             break;
           case 2:
-            selected = new Bird(2, "iceBird", bird.sprite, 30, 0.8, 0.7, "dash" ); // snabb men lätt
+            selected = new Bird(
+              2,
+              "iceBird",
+              bird.sprite,
+              30,
+              0.8,
+              0.7,
+              "dash",
+            ); // snabb men lätt
             break;
           case 3:
-            selected = new Bird(3, "purpleBird", bird.sprite, 40, 1.6, 1.2, "split"); // tung & kraftfull
+            selected = new Bird(
+              3,
+              "purpleBird",
+              bird.sprite,
+              40,
+              1.6,
+              1.2,
+              "split",
+            ); // tung & kraftfull
             break;
 
           default:
-            selected = new Bird(0, "birdImg", bird.sprite, 35, 1.0, 1.0, "none");
+            selected = new Bird(
+              0,
+              "birdImg",
+              bird.sprite,
+              35,
+              1.0,
+              1.0,
+              "none",
+            );
         }
-        
-        const already = game.selectedBirds.find(b => b.id === bird.id);
+
+        const already = game.selectedBirds.find((b) => b.id === bird.id);
         if (already) {
-          game.selectedBirds = game.selectedBirds.filter(b => b.id !== bird.id);
+          game.selectedBirds = game.selectedBirds.filter(
+            (b) => b.id !== bird.id,
+          );
           return;
         }
 
@@ -146,8 +187,10 @@ class BirdSelectScreen implements IScreen {
 
         game.selectedBirds.push(selected);
 
-        if (game.selectedBirds.length === game.maxBirdsAllowed) {
-          game.currentScreen = new LevelFactory().createLevel(game.selectedLevel);
+        if (game.selectedBirds.length === 1) {
+          game.currentScreen = new LevelFactory().createLevel(
+            game.selectedLevel,
+          );
         }
 
         return;
