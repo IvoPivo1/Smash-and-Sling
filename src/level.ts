@@ -17,10 +17,10 @@ class Level implements IScreen {
   }
 
   private getPlayer() {
-  return this.entities.find(
-    (e) => e instanceof Player && !(e as Player).isClone
-  ) as Player | undefined;
-}
+    return this.entities.find(
+      (e) => e instanceof Player && !(e as Player).isClone,
+    ) as Player | undefined;
+  }
 
   public update() {
     // uppdatera alla entities
@@ -124,6 +124,18 @@ class Level implements IScreen {
     for (let i = 0; i < this.entities.length; i++) {
       this.entities[i].draw();
     }
-  }
 
+    for (let ex of game.explosions) {
+      ex.update();
+      ex.draw();
+    }
+
+    game.explosions = game.explosions.filter((ex) => !ex.isDone());
+
+    for (let d of game.dashTrials) {
+      d.update();
+      d.draw();
+    }
+    game.dashTrials = game.dashTrials.filter((d) => !d.isDone());
+  }
 }

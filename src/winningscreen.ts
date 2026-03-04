@@ -28,7 +28,7 @@ class WinningScreen {
     fill(255, 255, 255);
     stroke(255, 105, 180);
     strokeWeight(5);
-    text("You Win!", width * 0.5, height * 0.5);
+    text("You Won!", width * 0.5, height * 0.5);
 
     textSize(30);
     strokeWeight(3);
