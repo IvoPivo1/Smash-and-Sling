@@ -48,11 +48,18 @@ class LevelSelect implements IScreen {
 
       game.selectedLevel = c.id + 1;
 
+
+      // SÄTT MAX FÅGLAR BEROENDE PÅ LEVEL
       if (game.selectedLevel === 1) game.maxBirdsAllowed = 1;
       if (game.selectedLevel === 2) game.maxBirdsAllowed = 1;
       if (game.selectedLevel === 3) game.maxBirdsAllowed = 2;
       if (game.selectedLevel === 4) game.maxBirdsAllowed = 2;
       if (game.selectedLevel === 5) game.maxBirdsAllowed = 3;
+      if (game.selectedLevel === 6) game.maxBirdsAllowed = 3;
+      if (game.selectedLevel === 7) game.maxBirdsAllowed = 4;
+      if (game.selectedLevel === 8) game.maxBirdsAllowed = 4;
+      if (game.selectedLevel === 9) game.maxBirdsAllowed = 4;
+      if (game.selectedLevel === 10) game.maxBirdsAllowed = 4;
       game.currentScreen = new BirdSelectScreen();
       return;
     }

@@ -4,6 +4,9 @@
 class Player extends Entity implements IScreen {
   private bird: Bird;
   private abilityUsed: boolean = false;
+
+  public isClone: boolean = false;
+
   radius: number;
   private dragDamping: number = 0.98;
 
@@ -169,7 +172,7 @@ class Player extends Entity implements IScreen {
           "none", 
         ),
       );
-
+      smallBird.isClone = true;
       smallBird.position = this.position.copy();
       smallBird.velocity = newVel;
       smallBird.isLaunched = true;
@@ -183,16 +186,9 @@ class Player extends Entity implements IScreen {
 
     game.splitDelayActive = true;
 
-    setTimeout(() => {
-      game.splitDelayActive = false;
-      const pigsLeft = game.currentLevel?.getPigs().length ?? 0;
-
-      if (pigsLeft === 0) {
-        game.currentScreen = new WinningScreen();
-      } else {
-        game.currentScreen = new GameOverScreen();
-      }
-    }, 2000);
+   setTimeout(() => {
+  game.splitDelayActive = false;
+}, 2000);
   }
 
   private explode() {

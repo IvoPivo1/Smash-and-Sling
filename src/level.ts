@@ -17,8 +17,10 @@ class Level implements IScreen {
   }
 
   private getPlayer() {
-    return this.entities.find((e) => e instanceof Player);
-  }
+  return this.entities.find(
+    (e) => e instanceof Player && !(e as Player).isClone
+  ) as Player | undefined;
+}
 
   public update() {
     // uppdatera alla entities
@@ -66,24 +68,22 @@ class Level implements IScreen {
       return;
     }
 
-     // Om ingen player finns
-if (!this.hasWon && !this.getPlayer()) {
+    // Om ingen player finns
+    if (!this.hasWon && !this.getPlayer()) {
+      // Finns det fler fåglar i kön? ladda nästa
+      if (game.selectedBirds.length > 0) {
+        const nextBird = game.selectedBirds[0];
+        this.entities.push(new Player(nextBird));
+        return;
+      }
 
-  // Finns det fler fåglar i kön? → ladda nästa
-  if (game.selectedBirds.length > 0) {
-    const nextBird = game.selectedBirds[0];
-    this.entities.push(new Player(nextBird));
-    return;
-  }
+      // Om split/bomb-delay är aktiv vänta
+      if (game.splitDelayActive || game.bombDelayActive) return;
 
-  // Om split/bomb-delay är aktiv → vänta
-  if (game.splitDelayActive || game.bombDelayActive) return;
-
-  // Annars → Game Over
-  game.currentScreen = new GameOverScreen();
-  return;
-}
-
+      // Annars Game Over
+      game.currentScreen = new GameOverScreen();
+      return;
+    }
 
     const player = this.getPlayer();
 
@@ -104,15 +104,12 @@ if (!this.hasWon && !this.getPlayer()) {
         return;
       }
     }
-
-    
   }
 
   public draw() {
     imageMode(CORNER);
     image(images.levelbg, 0, 0, width, height);
 
-  
     for (let i = 0; i < game.selectedBirds.length; i++) {
       const b = game.selectedBirds[i];
       image(
@@ -124,7 +121,6 @@ if (!this.hasWon && !this.getPlayer()) {
       );
     }
 
- 
     for (let i = 0; i < this.entities.length; i++) {
       this.entities[i].draw();
     }
