@@ -2,119 +2,114 @@
 /// <reference path="entity.ts" />
 
 class Player extends Entity implements IScreen {
-  private bird: Bird;
+private bird: Bird;
 
-  radius: number;
-  private dragDamping: number = 0.98;
- 
-  private isDragging: boolean = false;
-  public isLaunched: boolean = false;
+radius: number;
+private dragDamping: number = 0.98;
 
-  private startPos: p5.Vector;
-  private dragPos: p5.Vector;
-  // Används av blackPole för studseffekt
-  public getVelocity() {
-    return this.velocity;
-  }
-  // Sätter ny hastighet när spelaren studsar (blackPole)
-  public bounceBack(x: number, y: number) {
-    this.velocity.x = x;
-    this.velocity.y = y;
-  }
+private isDragging: boolean = false;
+public isLaunched: boolean = false;
 
-  constructor(bird: Bird) {
-    const position = createVector(272, height - 250);
+private startPos: p5.Vector;
+private dragPos: p5.Vector;
 
-    super(
-      bird.sprite,
-      position.x,
-      position.y,
-      bird.radius * 2,
-      bird.radius * 2,
-    );
+public getVelocity() {
+return this.velocity;
+}
 
-    this.bird = bird;
-    this.radius = bird.radius;
+public bounceBack(x: number, y: number) {
+this.velocity.x = x;
+this.velocity.y = y;
+}
 
-    this.startPos = position.copy();
-    this.dragPos = position.copy();
-  }
+constructor(bird: Bird) {
+const position = createVector(272, height - 250);
 
-  public onCollision(other: Entity): void {
-    // this.destroy();
-  }
+super(bird.sprite, position.x, position.y, bird.radius * 2, bird.radius * 2);
 
-  private mousePressed() {
-    if (!mouseIsPressed || this.isLaunched) return;
+this.bird = bird;
+this.radius = bird.radius;
 
-    const d = dist(mouseX, mouseY, this.position.x, this.position.y);
-    if (d < this.radius) {
-      this.isDragging = true;
-    }
-  }
+this.startPos = position.copy();
+this.dragPos = position.copy();
+}
 
-  private mouseDragged() {
-    if (!this.isDragging || this.isLaunched) return;
+public onCollision(_other: Entity): void {}
 
-    this.dragPos.set(mouseX, mouseY);
+private mousePressed() {
+if (!mouseIsPressed || this.isLaunched) return;
 
-    const maxPull = 120;
-    const diff = p5.Vector.sub(this.dragPos, this.startPos);
+const d = dist(mouseX, mouseY, this.position.x, this.position.y);
+if (d < this.radius) this.isDragging = true;
+}
 
-    if (diff.mag() > maxPull) {
-      diff.setMag(maxPull);
-      this.dragPos = p5.Vector.add(this.startPos, diff);
-    }
+private mouseDragged() {
+if (!this.isDragging || this.isLaunched) return;
 
-    this.position.set(this.dragPos);
-  }
+this.dragPos.set(mouseX, mouseY);
 
-  private mouseReleased() {
-    if (mouseIsPressed || !this.isDragging || this.isLaunched) return;
+const maxPull = 120;
+const diff = p5.Vector.sub(this.dragPos, this.startPos);
 
-    this.isDragging = false;
-    this.isLaunched = true;
+if (diff.mag() > maxPull) {
+diff.setMag(maxPull);
+this.dragPos = p5.Vector.add(this.startPos, diff);
+}
 
-    // Here you can adjust the speed of the bird
-    const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.3);
-    this.velocity.add(force);
-  }
+this.position.set(this.dragPos);
+}
 
-  update() {
-    this.mousePressed();
-    this.mouseDragged();
-    this.mouseReleased();
+private mouseReleased() {
+if (mouseIsPressed || !this.isDragging || this.isLaunched) return;
 
-    // Destroy om player faller under skärmen
-    if (this.position.y > height + 1000) {
-      this.alive = false;
-      return;
-    }
+this.isDragging = false;
+this.isLaunched = true;
 
-    if (!this.isLaunched) return;
+const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.3);
+this.velocity.add(force);
+}
 
-    this.velocity.y += this.gravity;
-    this.velocity.mult(this.dragDamping);
-    this.position.add(this.velocity);
-  }
+update() {
+this.mousePressed();
+this.mouseDragged();
+this.mouseReleased();
 
-  draw() {
-    // Draw slingshot band while dragging
-    if (this.isDragging) {
-      push();
-      stroke(60, 40, 20);
-      strokeWeight(6);
-      line(this.startPos.x, this.startPos.y, this.position.x, this.position.y);
-      pop();
-    }
+if (!this.isLaunched) return;
 
-    super.draw();
-  }
+this.velocity.y += this.gravity;
+this.velocity.mult(this.dragDamping);
+this.position.add(this.velocity);
 
-  reset() {
-    this.position.set(this.startPos);
-    this.velocity.set(0, 0);
-    this.isLaunched = false;
-    this.isDragging = false;
-  }
+if (frameCount % 2 === 0 && this.velocity.mag() > 0.5) {
+let c: p5.Color;
+
+if (this.bird.id === 0) c = color(220, 40, 40);
+else if (this.bird.id === 1) c = color(40, 200, 80);
+else if (this.bird.id === 2) c = color(60, 120, 255);
+else c = color(170, 80, 220);
+
+game.feathers.push(
+new Feather(this.position.x, this.position.y, this.velocity, c),
+);
+}
+}
+
+draw() {
+if (this.isDragging) {
+push();
+stroke(60, 40, 20);
+strokeWeight(6);
+line(this.startPos.x, this.startPos.y, this.position.x, this.position.y);
+pop();
+}
+
+super.draw();
+}
+
+reset() {
+this.position.set(this.startPos);
+this.velocity.set(0, 0);
+this.isLaunched = false;
+this.isDragging = false;
+}
 }

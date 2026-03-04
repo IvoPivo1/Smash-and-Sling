@@ -70,7 +70,7 @@ class LevelFactory {
       new Pole(900, 500, 112, 12),
     ];
 
-    return new Level(entities, 0);
+    return new Level(entities, 1);
   }
 
   // level 3
@@ -98,7 +98,7 @@ class LevelFactory {
       new Pole(1300, 500, 112, 12),
     ];
 
-    return new Level(entities, 0);
+    return new Level(entities, 2);
   }
 
   // level 4
