@@ -2,114 +2,239 @@
 /// <reference path="entity.ts" />
 
 class Player extends Entity implements IScreen {
-private bird: Bird;
+  private bird: Bird;
+  private abilityUsed: boolean = false;
 
-radius: number;
-private dragDamping: number = 0.98;
+  public isClone: boolean = false;
 
-private isDragging: boolean = false;
-public isLaunched: boolean = false;
+  radius: number;
+  private dragDamping: number = 0.98;
 
-private startPos: p5.Vector;
-private dragPos: p5.Vector;
+  private isDragging: boolean = false;
+  public isLaunched: boolean = false;
 
-public getVelocity() {
-return this.velocity;
-}
+  private startPos: p5.Vector;
+  private dragPos: p5.Vector;
+  // Används av blackPole för studseffekt
+  public getVelocity() {
+    return this.velocity;
+  }
+  // Sätter ny hastighet när spelaren studsar (blackPole)
+  public bounceBack(x: number, y: number) {
+    this.velocity.x = x;
+    this.velocity.y = y;
+  }
 
-public bounceBack(x: number, y: number) {
-this.velocity.x = x;
-this.velocity.y = y;
-}
+  constructor(bird: Bird) {
+    const position = createVector(272, height - 250);
 
-constructor(bird: Bird) {
-const position = createVector(272, height - 250);
+    super(
+      bird.sprite,
+      position.x,
+      position.y,
+      bird.radius * 2,
+      bird.radius * 2,
+    );
 
-super(bird.sprite, position.x, position.y, bird.radius * 2, bird.radius * 2);
+    this.bird = bird;
+    this.radius = bird.radius;
 
-this.bird = bird;
-this.radius = bird.radius;
+    this.startPos = position.copy();
+    this.dragPos = position.copy();
+  }
 
-this.startPos = position.copy();
-this.dragPos = position.copy();
-}
+  public onCollision(other: Entity): void {
+    // this.destroy();
+  }
 
-public onCollision(_other: Entity): void {}
+  private mousePressed() {
+    if (!mouseIsPressed || this.isLaunched) return;
 
-private mousePressed() {
-if (!mouseIsPressed || this.isLaunched) return;
+    const d = dist(mouseX, mouseY, this.position.x, this.position.y);
+    if (d < this.radius) {
+      this.isDragging = true;
+    }
+  }
 
-const d = dist(mouseX, mouseY, this.position.x, this.position.y);
-if (d < this.radius) this.isDragging = true;
-}
+  private mouseDragged() {
+    if (!this.isDragging || this.isLaunched) return;
 
-private mouseDragged() {
-if (!this.isDragging || this.isLaunched) return;
+    this.dragPos.set(mouseX, mouseY);
 
-this.dragPos.set(mouseX, mouseY);
+    const maxPull = 120;
+    const diff = p5.Vector.sub(this.dragPos, this.startPos);
 
-const maxPull = 120;
-const diff = p5.Vector.sub(this.dragPos, this.startPos);
+    if (diff.mag() > maxPull) {
+      diff.setMag(maxPull);
+      this.dragPos = p5.Vector.add(this.startPos, diff);
+    }
 
-if (diff.mag() > maxPull) {
-diff.setMag(maxPull);
-this.dragPos = p5.Vector.add(this.startPos, diff);
-}
+    this.position.set(this.dragPos);
+  }
 
-this.position.set(this.dragPos);
-}
+  private mouseReleased() {
+    if (mouseIsPressed || !this.isDragging || this.isLaunched) return;
 
-private mouseReleased() {
-if (mouseIsPressed || !this.isDragging || this.isLaunched) return;
+    this.isDragging = false;
+    this.isLaunched = true;
 
-this.isDragging = false;
-this.isLaunched = true;
+    // Here you can adjust the speed of the bird
+    const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.3);
+    this.velocity.add(force);
+  }
 
-const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.3);
-this.velocity.add(force);
-}
+  private handleAbilities() {
+    if (!this.abilityUsed && this.bird.ability === "dash") {
+      if (mouseIsPressed) {
+        this.velocity.x *= 2.5;
+        this.velocity.y *= 0.8;
+        this.abilityUsed = true;
+      }
+    }
 
-update() {
-this.mousePressed();
-this.mouseDragged();
-this.mouseReleased();
+    if (!this.abilityUsed && this.bird.ability === "split") {
+      if (mouseIsPressed) {
+        this.splitIntoThree();
+        this.abilityUsed = true;
+        this.alive = false;
+        return;
+      }
+    }
 
-if (!this.isLaunched) return;
+    if (!this.abilityUsed && this.bird.ability === "bomb") {
+      if (mouseIsPressed) {
+        this.explode();
+        this.abilityUsed = true;
+        this.alive = false;
+        return;
+      }
+    }
+  }
 
-this.velocity.y += this.gravity;
-this.velocity.mult(this.dragDamping);
-this.position.add(this.velocity);
+  update() {
+    this.mousePressed();
+    this.mouseDragged();
+    this.mouseReleased();
 
-if (frameCount % 2 === 0 && this.velocity.mag() > 0.5) {
-let c: p5.Color;
+    // Destroy om player faller under skärmen
+    if (this.position.y > height + 1000) {
+      this.alive = false;
+      return;
+    }
 
-if (this.bird.id === 0) c = color(220, 40, 40);
-else if (this.bird.id === 1) c = color(40, 200, 80);
-else if (this.bird.id === 2) c = color(60, 120, 255);
-else c = color(170, 80, 220);
+    if (this.isLaunched) {
+      this.handleAbilities();
+    }
 
-game.feathers.push(
-new Feather(this.position.x, this.position.y, this.velocity, c),
-);
-}
-}
+    if (!this.isLaunched) return;
 
-draw() {
-if (this.isDragging) {
-push();
-stroke(60, 40, 20);
-strokeWeight(6);
-line(this.startPos.x, this.startPos.y, this.position.x, this.position.y);
-pop();
-}
+    this.velocity.y += this.gravity;
+    this.velocity.mult(this.dragDamping);
+    this.position.add(this.velocity);
+  }
 
-super.draw();
-}
+  draw() {
+    // Draw slingshot band while dragging
+    if (this.isDragging) {
+      push();
+      stroke(60, 40, 20);
+      strokeWeight(6);
+      line(this.startPos.x, this.startPos.y, this.position.x, this.position.y);
+      pop();
+    }
 
-reset() {
-this.position.set(this.startPos);
-this.velocity.set(0, 0);
-this.isLaunched = false;
-this.isDragging = false;
+    super.draw();
+  }
+
+  reset() {
+    this.position.set(this.startPos);
+    this.velocity.set(0, 0);
+    this.isLaunched = false;
+    this.isDragging = false;
+  }
+
+  private splitIntoThree() {
+    if (!game.currentLevel) return;
+
+    const angles = [-0.3, 0, 0.3];
+
+    for (let a of angles) {
+      const newVel = this.velocity.copy().rotate(a).mult(0.9);
+
+      const smallBird = new Player(
+        new Bird(
+          this.bird.id,
+          this.bird.name,
+          this.bird.sprite,
+          this.bird.radius * 0.6,
+          this.bird.power * 0.7,
+          this.bird.weight * 0.7,
+          "none", 
+        ),
+      );
+      smallBird.isClone = true;
+      smallBird.position = this.position.copy();
+      smallBird.velocity = newVel;
+      smallBird.isLaunched = true;
+
+      game.currentLevel.entities.push(smallBird);
+    }
+
+    this.alive = false;
+
+    game.selectedBirds.shift();
+
+    game.splitDelayActive = true;
+
+   setTimeout(() => {
+  game.splitDelayActive = false;
+}, 2000);
+  }
+
+  private explode() {
+    if (!game.currentLevel) return;
+
+    const explosionRadius = 250;
+
+    for (let e of game.currentLevel.entities) {
+      if (e === this) continue;
+
+      const d = dist(
+        this.position.x,
+        this.position.y,
+        e.position.x,
+        e.position.y,
+      );
+
+      if (d < explosionRadius) {
+        const force = p5.Vector.sub(e.position, this.position).setMag(
+          (explosionRadius - d) * 0.2,
+        );
+
+        e.applyForce(force);
+
+        if (e instanceof Pig) e.alive = false;
+        if (e instanceof Pole) e.alive = false;
+      }
+    }
+
+    this.alive = false;
+    game.selectedBirds.shift();
+
+    if (game.selectedBirds.length > 0) return;
+
+    game.bombDelayActive = true;
+
+    setTimeout(() => {
+      game.bombDelayActive = false;
+      const pigsLeft = game.currentLevel?.getPigs().length ?? 0;
+
+      if (pigsLeft === 0) {
+        game.currentScreen = new WinningScreen();
+      } else {
+        game.currentScreen = new GameOverScreen();
+      }
+    }, 2000);
+  }
 }
 }

@@ -19,15 +19,16 @@ class WinningScreen {
   }
 
   public draw() {
-    background(0, 0, 0, 180);
+    imageMode(CORNER);
+    image(images.winningscreenbg, 0, 0, width, height);
 
     push();
     textAlign(CENTER, CENTER);
-    textSize(60);
-    fill(255, 200, 0);
+    textSize(89);
+    fill(255, 255, 255);
     stroke(255, 105, 180);
-    strokeWeight(6);
-    text("You Win!", width * 0, 5, height * 0.5);
+    strokeWeight(5);
+    text("You Win!", width * 0.5, height * 0.5);
 
     textSize(30);
     strokeWeight(3);

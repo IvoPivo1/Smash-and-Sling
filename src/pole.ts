@@ -28,8 +28,10 @@ class Pole extends Entity {
 
   public draw() {
     push();
-    rectMode(CENTER);
-    rect(this.position.x, this.position.y, this.size.x, this.size.y);
+    imageMode(CENTER);
+    image(images.pole, this.position.x, this.position.y, this.size.x, this.size.y);
+    
+   
     pop();
   }
 }
@@ -47,9 +49,9 @@ class BlackPole extends Pole {
 
   public override draw() {
     push();
-    rectMode(CENTER);
-    fill(0, 0, 0);
-    rect(this.position.x, this.position.y, this.size.x, this.size.y);
+    imageMode(CENTER);
+    image(images.concretePole, this.position.x, this.position.y, this.size.x, this.size.y);
+   
     pop();
   }
 

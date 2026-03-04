@@ -41,6 +41,11 @@ abstract class Entity {
 
   public abstract onCollision(other: Entity): void;
 
+  public applyForce(force: p5.Vector) {
+  this.velocity.add(force);
+  }
+
+
   // Metoder
   public update() {
     this.velocity.y += this.gravity;
