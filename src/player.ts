@@ -3,10 +3,13 @@
 
 class Player extends Entity implements IScreen {
   private bird: Bird;
+  private abilityUsed: boolean = false;
+
+  public isClone: boolean = false;
 
   radius: number;
   private dragDamping: number = 0.98;
- 
+
   private isDragging: boolean = false;
   public isLaunched: boolean = false;
 
@@ -80,6 +83,34 @@ class Player extends Entity implements IScreen {
     this.velocity.add(force);
   }
 
+  private handleAbilities() {
+    if (!this.abilityUsed && this.bird.ability === "dash") {
+      if (mouseIsPressed) {
+        this.velocity.x *= 2.5;
+        this.velocity.y *= 0.8;
+        this.abilityUsed = true;
+      }
+    }
+
+    if (!this.abilityUsed && this.bird.ability === "split") {
+      if (mouseIsPressed) {
+        this.splitIntoThree();
+        this.abilityUsed = true;
+        this.alive = false;
+        return;
+      }
+    }
+
+    if (!this.abilityUsed && this.bird.ability === "bomb") {
+      if (mouseIsPressed) {
+        this.explode();
+        this.abilityUsed = true;
+        this.alive = false;
+        return;
+      }
+    }
+  }
+
   update() {
     this.mousePressed();
     this.mouseDragged();
@@ -89,6 +120,10 @@ class Player extends Entity implements IScreen {
     if (this.position.y > height + 1000) {
       this.alive = false;
       return;
+    }
+
+    if (this.isLaunched) {
+      this.handleAbilities();
     }
 
     if (!this.isLaunched) return;
@@ -116,5 +151,89 @@ class Player extends Entity implements IScreen {
     this.velocity.set(0, 0);
     this.isLaunched = false;
     this.isDragging = false;
+  }
+
+  private splitIntoThree() {
+    if (!game.currentLevel) return;
+
+    const angles = [-0.3, 0, 0.3];
+
+    for (let a of angles) {
+      const newVel = this.velocity.copy().rotate(a).mult(0.9);
+
+      const smallBird = new Player(
+        new Bird(
+          this.bird.id,
+          this.bird.name,
+          this.bird.sprite,
+          this.bird.radius * 0.6,
+          this.bird.power * 0.7,
+          this.bird.weight * 0.7,
+          "none", 
+        ),
+      );
+      smallBird.isClone = true;
+      smallBird.position = this.position.copy();
+      smallBird.velocity = newVel;
+      smallBird.isLaunched = true;
+
+      game.currentLevel.entities.push(smallBird);
+    }
+
+    this.alive = false;
+
+    game.selectedBirds.shift();
+
+    game.splitDelayActive = true;
+
+   setTimeout(() => {
+  game.splitDelayActive = false;
+}, 2000);
+  }
+
+  private explode() {
+    if (!game.currentLevel) return;
+
+    const explosionRadius = 250;
+
+    for (let e of game.currentLevel.entities) {
+      if (e === this) continue;
+
+      const d = dist(
+        this.position.x,
+        this.position.y,
+        e.position.x,
+        e.position.y,
+      );
+
+      if (d < explosionRadius) {
+        const force = p5.Vector.sub(e.position, this.position).setMag(
+          (explosionRadius - d) * 0.2,
+        );
+
+        e.applyForce(force);
+
+        if (e instanceof Pig) e.alive = false;
+        if (e instanceof Pole) e.alive = false;
+      }
+    }
+
+    this.alive = false;
+    game.selectedBirds.shift();
+
+    if (game.selectedBirds.length > 0) return;
+
+    game.bombDelayActive = true;
+
+    setTimeout(() => {
+      game.bombDelayActive = false;
+      const pigsLeft = game.currentLevel?.getPigs().length ?? 0;
+
+      if (pigsLeft === 0) {
+        game.currentScreen = new WinningScreen();
+      } else {
+        game.currentScreen = new GameOverScreen();
+      }
+    }, 2000);
   }
 }
