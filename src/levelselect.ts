@@ -8,13 +8,14 @@ class LevelSelect implements IScreen {
   }
 
   public draw() {
-    background(250, 200, 0);
+    imageMode(CORNER);
+    image(images.levelSelectbg, 0, 0, width, height);
 
     push();
-    fill(50);
+    fill(255, 255, 255);
     textAlign(CENTER, TOP);
-    textSize(28);
-    text("Choose level", width / 2, 30);
+    textSize(50);
+    text("Choose level", width / 2, 60);
     pop();
 
     for (const c of this.ck) {

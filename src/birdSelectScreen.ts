@@ -9,7 +9,6 @@ class BirdSelectScreen implements IScreen {
   }[];
 
   constructor() {
-
     game.selectedBirds = [];
     // 4 fåglar, bara första upplåst
     this.birds = [
