@@ -125,4 +125,5 @@ class Level implements IScreen {
       this.entities[i].draw();
     }
   }
+
 }
