@@ -131,6 +131,17 @@ class Player extends Entity implements IScreen {
     this.velocity.y += this.gravity;
     this.velocity.mult(this.dragDamping);
     this.position.add(this.velocity);
+
+    if (frameCount % 2 === 0 && this.velocity.mag() > 0.5) {
+      let c: p5.Color;
+      if (this.bird.id === 0) c = color(220, 40,40);
+      else if(this.bird.id ===1) c = color(40, 200, 80);
+      else if(this.bird.id ===2) c = color(60, 120, 255);
+      else c = color(170, 80, 220);
+      game.feathers.push(
+      new Feather(this.position.x, this.position.y, this.velocity, c),
+      );
+    }
   }
 
   draw() {
@@ -236,5 +247,4 @@ class Player extends Entity implements IScreen {
       }
     }, 2000);
   }
-}
 }
