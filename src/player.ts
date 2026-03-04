@@ -237,3 +237,4 @@ class Player extends Entity implements IScreen {
     }, 2000);
   }
 }
+}
