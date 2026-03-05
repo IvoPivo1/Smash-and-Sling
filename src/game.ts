@@ -8,7 +8,7 @@ class Game {
 public currentScreen: IScreen;
 public currentLevel: Level | null = null;
 public selectedBird: number = 0;
-public selectedSprite: p5.Image = images.birdImg;
+public selectedSprite: p5.Image = images.bird0_idle;
 public selectedBirdObject: Bird | null = null;
 public explosions: Explosion[] = [];
 public dashTrials: DashTrail [] = [];
