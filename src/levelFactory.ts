@@ -338,7 +338,95 @@ class LevelFactory {
 
   // level 10
   private levelTen(): Level {
-    const entities: Entity[] = [new Player(game.selectedBirds[0])];
+    const entities: Entity[] = [
+      new Player(game.selectedBirds[0]),
+
+      // Vänster, 4 pigs
+      new Pig(865, 650, random(pigList)),
+      new Pig(865, 550, random(pigList)),
+      new Pig(865, 475, random(pigList)),
+      new Pig(865, 410, random(pigList)),
+
+      // våning 1
+      new Pole(790, 680, 12, 260, 0),
+      new Pole(860, 680, 12, 260, 0),
+      new Pole(930, 680, 12, 260, 0),
+      new Pole(790, 680, 152, 12),
+
+      // våning 2
+      new BlackPole(820, 570, 12, 110, 0),
+      new Pole(900, 570, 12, 110, 0),
+      new Pole(820, 570, 92, 12),
+
+      // våning 3
+      new Pole(835, 495, 12, 75, 0),
+      new BlackPole(885, 495, 12, 75, 0),
+      new Pole(835, 495, 62, 12),
+
+      // topp
+      new Pole(835, 435, 12, 70, 0),
+      new Pole(885, 435, 12, 70, 0),
+      new Pole(845, 435, 42, 12),
+
+      new BlackPole(740, 690, 12, 320, 0),
+
+      // Mitten, 4 pigs
+      new Pig(1080, 670, random(pigList)),
+      new Pig(1140, 670, random(pigList)),
+      new Pig(1115, 560, random(pigList)),
+      new Pig(1115, 480, random(pigList)),
+      new Pig(1115, 420, random(pigList)),
+
+      new BlackPole(960, 690, 12, 390, 0),
+      new BlackPole(1260, 690, 12, 390, 0),
+
+      // våning 1
+      new Pole(990, 700, 12, 280, 0),
+      new Pole(1110, 700, 12, 280, 0),
+      new Pole(1230, 700, 12, 280, 0),
+      new Pole(990, 700, 252, 12),
+
+      // våning 2
+      new BlackPole(1035, 580, 12, 120, 0),
+      new BlackPole(1185, 580, 12, 120, 0),
+      new Pole(1035, 580, 162, 12),
+
+      // våning 3
+      new Pole(1075, 500, 12, 90, 0),
+      new Pole(1145, 500, 12, 90, 0),
+      new Pole(1075, 500, 82, 12),
+
+      // topp
+      new Pole(1075, 440, 12, 65, 0),
+      new Pole(1145, 440, 12, 65, 0),
+      new Pole(1075, 440, 80, 12),
+
+      // Höger, 3 pigs
+      new Pig(1375, 670, random(pigList)),
+      new Pig(1375, 560, random(pigList)),
+      new Pig(1375, 420, random(pigList)),
+
+      // våning 1
+      new Pole(1290, 700, 12, 280, 0),
+      new Pole(1370, 700, 12, 280, 0),
+      new Pole(1450, 700, 12, 280, 0),
+      new Pole(1290, 700, 172, 12),
+
+      // våning 2
+      new Pole(1330, 580, 12, 120, 0),
+      new BlackPole(1410, 580, 12, 120, 0),
+      new Pole(1330, 580, 92, 12),
+
+      // våning 3
+      new BlackPole(1350, 500, 12, 80, 0),
+      new Pole(1390, 500, 12, 80, 0),
+      new Pole(1350, 500, 52, 12),
+
+      // topp
+      new Pole(1360, 440, 12, 70, 0),
+      new Pole(1380, 440, 12, 70, 0),
+      new Pole(1360, 440, 32, 12),
+    ];
 
     return new Level(entities, 9);
   }
