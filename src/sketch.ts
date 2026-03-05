@@ -103,6 +103,6 @@ function windowResized() {
 }
 
 function mousePressed() {
-  game.onMousePressed();
+  game?.onMousePressed();  
  
 }
