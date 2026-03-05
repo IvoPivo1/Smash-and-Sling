@@ -18,7 +18,7 @@ class BirdSelectScreen implements IScreen {
         r: 60,
         unlocked: game.unlockedBirds.indexOf(0) !== -1,
         id: 0,
-        sprite: images.birdImg,
+        sprite: images.bird0_idle,
       },
       {
         x: 0,
@@ -26,7 +26,7 @@ class BirdSelectScreen implements IScreen {
         r: 60,
         unlocked: game.unlockedBirds.indexOf(1) !== -1,
         id: 1,
-        sprite: images.bigBird,
+        sprite: images.bird1_idle,
       },
       {
         x: 0,
@@ -34,7 +34,7 @@ class BirdSelectScreen implements IScreen {
         r: 60,
         unlocked: game.unlockedBirds.indexOf(2) !== -1,
         id: 2,
-        sprite: images.iceBird,
+        sprite: images.bird2_idle,
       },
       {
         x: 0,
@@ -42,7 +42,7 @@ class BirdSelectScreen implements IScreen {
         r: 60,
         unlocked: game.unlockedBirds.indexOf(3) !== -1,
         id: 3,
-        sprite: images.purpleBird,
+        sprite: images.bird3_idle,
       },
     ];
   }

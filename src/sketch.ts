@@ -12,16 +12,14 @@ let images: {
   pig_king: p5.Image;
   pig_stinky: p5.Image;
   pig_soldier: p5.Image;
-  birdImg: p5.Image;
+  
   startscreenbg: p5.Image;
   winningscreenbg: p5.Image;
   howtoplaybg: p5.Image;
   levelbg: p5.Image;
   birdSelectbg: p5.Image;
   levelSelectbg: p5.Image;
-  bigBird: p5.Image;
-  iceBird: p5.Image;
-  purpleBird: p5.Image;
+
   gameOver: p5.Image;
   pole: p5.Image;
   concretePole: p5.Image;
@@ -55,7 +53,7 @@ function preload() {
     logo: loadImage("./assets/images/logo.png"),
     logo2: loadImage("./assets/images/logo2.png"),
     block: loadImage("./assets/images/block.png"),
-    birdImg: loadImage("./assets/images/bird.png"),
+    
     pig_pilot: loadImage("./assets/images/pig_pilot.png"),
     pig_king: loadImage("./assets/images/pig_king.png"),
     pig_stinky: loadImage("./assets/images/pig_stinky.png"),
@@ -66,28 +64,26 @@ function preload() {
     birdSelectbg: loadImage("./assets/images/birdSelectBackground.jpg"),
     winningscreenbg: loadImage("./assets/images/winningScreenbg.jpg"),
     levelSelectbg: loadImage("./assets/images/levelSelectbg.jpg"),
-    bigBird: loadImage("./assets/images/bigBird.png"),
-    iceBird: loadImage("./assets/images/iceBird.png"),
-    purpleBird: loadImage("./assets/images/purpleBird.png"),
+
     gameOver: loadImage("./assets/images/gameover.jpg"),
     pole: loadImage("./assets/images/woodenPole.png"),
     concretePole: loadImage("./assets/images/concretePole.png"),
 
-    bird0_idle: loadImage("assets/birds/bird0_idle.png"),
-    bird0_drag: loadImage("assets/birds/bird0_drag.png"),
-    bird0_fly: loadImage("assets/birds/bird0_fly.png"),
+    bird0_idle: loadImage("./assets/images/bird0_idle.png"),
+    bird0_drag: loadImage("./assets/images/bird0_drag.png"),
+    bird0_fly: loadImage("./assets/images/bird0_fly.png"),
 
-    bird1_idle: loadImage("assets/birds/bird1_idle.png"),
-    bird1_drag: loadImage("assets/birds/bird1_drag.png"),
-    bird1_fly: loadImage("assets/birds/bird1_fly.png"),
+    bird1_idle: loadImage("./assets/images/bird1_idle.png"),
+    bird1_drag: loadImage("./assets/images/bird1_drag.png"),
+    bird1_fly: loadImage("./assets/images/bird1_fly.png"),
 
-    bird2_idle: loadImage("assets/birds/bird2_idle.png"),
-    bird2_drag: loadImage("assets/birds/bird2_drag.png"),
-    bird2_fly: loadImage("assets/birds/bird2_fly.png"),
+    bird2_idle: loadImage("./assets/images/bird2_idle.png"),
+    bird2_drag: loadImage("./assets/images/bird2_drag.png"),
+    bird2_fly: loadImage("./assets/images/bird2_fly.png"),
 
-    bird3_idle: loadImage("assets/birds/bird3_idle.png"),
-    bird3_drag: loadImage("assets/birds/bird3_drag.png"),
-    bird3_fly: loadImage("assets/birds/bird3_fly.png"),
+    bird3_idle: loadImage("./assets/images/bird3_idle.png"),
+    bird3_drag: loadImage("./assets/images/bird3_drag.png"),
+    bird3_fly: loadImage("./assets/images/bird3_fly.png"),
   };
 }
 
