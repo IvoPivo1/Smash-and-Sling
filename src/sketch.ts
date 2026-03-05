@@ -36,30 +36,30 @@ let soundOn: boolean = true;
  * sound files, images etc...
  */
 function preload() {
-  music = { mystery: loadSound("/assets/music/background.mp3") };
+  music = { mystery: loadSound("./assets/music/background.mp3") };
 
   images = {
-    pink: loadImage("/assets/images/pink.png"),
-    logo: loadImage("/assets/images/logo.png"),
-    logo2: loadImage("/assets/images/logo2.png"),
-    block: loadImage("/assets/images/block.png"),
-    birdImg: loadImage("/assets/images/bird.png"),
-    pig_pilot: loadImage("/assets/images/pig_pilot.png"),
-    pig_king: loadImage("/assets/images/pig_king.png"),
-    pig_stinky: loadImage("/assets/images/pig_stinky.png"),
-    pig_soldier: loadImage("/assets/images/pig_soldier.png"),
-    startscreenbg: loadImage("/assets/images/startScreenbg.jpg"),
-    howtoplaybg: loadImage("/assets/images/howScreenbg.jpg"),
-    levelbg: loadImage("/assets/images/levelbg.jpg"),
-    birdSelectbg: loadImage("/assets/images/birdSelectBackground.jpg"),
-    winningscreenbg: loadImage("/assets/images/winningScreenbg.jpg"),
-    levelSelectbg: loadImage("/assets/images/levelSelectbg.jpg"),
-    bigBird: loadImage("/assets/images/bigBird.png"),
-    iceBird: loadImage("/assets/images/iceBird.png"),
-    purpleBird: loadImage("/assets/images/purpleBird.png"),
-    gameOver: loadImage("/assets/images/gameOver.jpg"),
-    pole: loadImage("/assets/images/woodenPole.png"),
-    concretePole: loadImage("/assets/images/concretePole.png"),
+    pink: loadImage("./assets/images/pink.png"),
+    logo: loadImage("./assets/images/logo.png"),
+    logo2: loadImage("./assets/images/logo2.png"),
+    block: loadImage("./assets/images/block.png"),
+    birdImg: loadImage("./assets/images/bird.png"),
+    pig_pilot: loadImage("./assets/images/pig_pilot.png"),
+    pig_king: loadImage("./assets/images/pig_king.png"),
+    pig_stinky: loadImage("./assets/images/pig_stinky.png"),
+    pig_soldier: loadImage("./assets/images/pig_soldier.png"),
+    startscreenbg: loadImage("./assets/images/startScreenbg.jpg"),
+    howtoplaybg: loadImage("./assets/images/howScreenbg.jpg"),
+    levelbg: loadImage("./assets/images/levelbg.jpg"),
+    birdSelectbg: loadImage("./assets/images/birdSelectBackground.jpg"),
+    winningscreenbg: loadImage("./assets/images/winningScreenbg.jpg"),
+    levelSelectbg: loadImage("./assets/images/levelSelectbg.jpg"),
+    bigBird: loadImage("./assets/images/bigBird.png"),
+    iceBird: loadImage("./assets/images/iceBird.png"),
+    purpleBird: loadImage("./assets/images/purpleBird.png"),
+    gameOver: loadImage("./assets/images/gameOver.jpg"),
+    pole: loadImage("./assets/images/woodenPole.png"),
+    concretePole: loadImage("./assets/images/concretePole.png"),
   };
 }
 
