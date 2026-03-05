@@ -49,7 +49,6 @@ class LevelSelect implements IScreen {
 
       game.selectedLevel = c.id + 1;
 
-
       // SÄTT MAX FÅGLAR BEROENDE PÅ LEVEL
       if (game.selectedLevel === 1) game.maxBirdsAllowed = 1;
       if (game.selectedLevel === 2) game.maxBirdsAllowed = 1;
@@ -65,8 +64,12 @@ class LevelSelect implements IScreen {
       return;
     }
   }
-  private isUnlocked(_id: number) {
-    return true;
+
+  private isUnlocked(id: number) {
+    for (let i = 0; i < game.unlocked.length; i++) {
+      if (game.unlocked[i] === id) return true;
+    }
+    return false;
   }
 
   private drawStars(x: number, y: number, stars: number) {
