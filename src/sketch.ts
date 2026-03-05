@@ -57,7 +57,7 @@ function preload() {
     bigBird: loadImage("./assets/images/bigBird.png"),
     iceBird: loadImage("./assets/images/iceBird.png"),
     purpleBird: loadImage("./assets/images/purpleBird.png"),
-    gameOver: loadImage("./assets/images/gameOver.jpg"),
+    gameOver: loadImage("./assets/images/gameover.jpg"),
     pole: loadImage("./assets/images/woodenPole.png"),
     concretePole: loadImage("./assets/images/concretePole.png"),
   };
