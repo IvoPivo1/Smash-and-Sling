@@ -187,11 +187,10 @@ class BirdSelectScreen implements IScreen {
 
         game.selectedBirds.push(selected);
 
-        if (game.selectedBirds.length === 1) {
-          game.currentScreen = new LevelFactory().createLevel(
-            game.selectedLevel,
-          );
-        }
+        if (game.selectedBirds.length === game.maxBirdsAllowed) {
+  game.currentScreen = new LevelFactory().createLevel(game.selectedLevel);
+}
+
 
         return;
       }
