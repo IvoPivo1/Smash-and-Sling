@@ -36,7 +36,7 @@ let soundOn: boolean = true;
  * sound files, images etc...
  */
 function preload() {
-  music = { mystery: loadSound("/assets/music/mystery.mp3") };
+  music = { mystery: loadSound("/assets/music/background.mp3") };
 
   images = {
     pink: loadImage("/assets/images/pink.png"),
@@ -80,6 +80,7 @@ function setup() {
     images.pig_soldier,
   ];
   music.mystery.setVolume(0.8);
+  music.mystery.loop();
   game = new Game();
 }
 
