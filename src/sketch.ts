@@ -25,6 +25,18 @@ let images: {
   gameOver: p5.Image;
   pole: p5.Image;
   concretePole: p5.Image;
+  bird0_idle: p5.Image;
+  bird0_drag: p5.Image;
+  bird0_fly: p5.Image;
+  bird1_idle: p5.Image;
+  bird1_drag: p5.Image;
+  bird1_fly: p5.Image;
+  bird2_idle: p5.Image;
+  bird2_drag: p5.Image;
+  bird2_fly: p5.Image;
+  bird3_idle: p5.Image;
+  bird3_drag: p5.Image;
+  bird3_fly: p5.Image;
 };
 
 let musicOn: boolean = true;
@@ -60,6 +72,22 @@ function preload() {
     gameOver: loadImage("./assets/images/gameover.jpg"),
     pole: loadImage("./assets/images/woodenPole.png"),
     concretePole: loadImage("./assets/images/concretePole.png"),
+
+    bird0_idle: loadImage("assets/birds/bird0_idle.png"),
+    bird0_drag: loadImage("assets/birds/bird0_drag.png"),
+    bird0_fly: loadImage("assets/birds/bird0_fly.png"),
+
+    bird1_idle: loadImage("assets/birds/bird1_idle.png"),
+    bird1_drag: loadImage("assets/birds/bird1_drag.png"),
+    bird1_fly: loadImage("assets/birds/bird1_fly.png"),
+
+    bird2_idle: loadImage("assets/birds/bird2_idle.png"),
+    bird2_drag: loadImage("assets/birds/bird2_drag.png"),
+    bird2_fly: loadImage("assets/birds/bird2_fly.png"),
+
+    bird3_idle: loadImage("assets/birds/bird3_idle.png"),
+    bird3_drag: loadImage("assets/birds/bird3_drag.png"),
+    bird3_fly: loadImage("assets/birds/bird3_fly.png"),
   };
 }
 
@@ -103,6 +131,5 @@ function windowResized() {
 }
 
 function mousePressed() {
-  game?.onMousePressed();  
- 
+  game?.onMousePressed();
 }
