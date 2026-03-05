@@ -271,7 +271,67 @@ class LevelFactory {
 
   // level 9
   private levelNine(): Level {
-    const entities: Entity[] = [new Player(game.selectedBirds[0])];
+    const entities: Entity[] = [
+      new Player(game.selectedBirds[0]),
+
+      // vänster, 3 pigs
+      new Pig(865, 630, random(pigList)),
+      new Pig(865, 520, random(pigList)),
+      new Pig(865, 440, random(pigList)),
+
+      // våning 1
+      new Pole(810, 650, 12, 240, 0),
+      new Pole(910, 650, 12, 240, 0),
+      new Pole(810, 650, 112, 12),
+
+      // våning 2
+      new BlackPole(830, 540, 12, 110, 0),
+      new Pole(890, 540, 12, 110, 0),
+      new Pole(830, 540, 72, 12),
+
+      // topp
+      new Pole(830, 465, 12, 80, 0),
+      new Pole(890, 465, 12, 80, 0),
+      new Pole(830, 465, 60, 12),
+
+      new BlackPole(740, 700, 12, 280, 0),
+
+      // Mitten, 3 pigs
+      new Pig(1115, 640, random(pigList)),
+      new Pig(1115, 540, random(pigList)),
+      new Pig(1115, 460, random(pigList)),
+
+      new BlackPole(940, 700, 12, 360, 0),
+      new BlackPole(1280, 700, 12, 360, 0),
+
+      new Pole(1010, 670, 12, 260, 0),
+      new Pole(1210, 670, 12, 260, 0),
+      new Pole(1010, 670, 212, 12),
+
+      new BlackPole(1045, 560, 12, 110, 0),
+      new BlackPole(1175, 560, 12, 110, 0),
+      new Pole(1045, 560, 142, 12),
+
+      new Pole(1080, 485, 12, 80, 0),
+      new Pole(1140, 485, 12, 80, 0),
+      new Pole(1080, 485, 72, 12),
+
+      // Höger, 2 pigs
+      new Pig(1375, 650, random(pigList)),
+      new Pig(1375, 460, random(pigList)),
+
+      new Pole(1320, 670, 12, 260, 0),
+      new Pole(1420, 670, 12, 260, 0),
+      new Pole(1320, 670, 112, 12),
+
+      new Pole(1340, 560, 12, 110, 0),
+      new BlackPole(1400, 560, 12, 110, 0),
+      new Pole(1340, 560, 72, 12),
+
+      new Pole(1355, 485, 12, 80, 0),
+      new Pole(1385, 485, 12, 80, 0),
+      new Pole(1355, 485, 42, 12),
+    ];
 
     return new Level(entities, 8);
   }
