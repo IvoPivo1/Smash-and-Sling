@@ -18,7 +18,7 @@ class BirdSelectScreen implements IScreen {
         r: 60,
         unlocked: game.unlockedBirds.indexOf(0) !== -1,
         id: 0,
-        sprite: images.birdImg,
+        sprite: images.bird0_idle,
       },
       {
         x: 0,
@@ -26,7 +26,7 @@ class BirdSelectScreen implements IScreen {
         r: 60,
         unlocked: game.unlockedBirds.indexOf(1) !== -1,
         id: 1,
-        sprite: images.bigBird,
+        sprite: images.bird1_idle,
       },
       {
         x: 0,
@@ -34,7 +34,7 @@ class BirdSelectScreen implements IScreen {
         r: 60,
         unlocked: game.unlockedBirds.indexOf(2) !== -1,
         id: 2,
-        sprite: images.iceBird,
+        sprite: images.bird2_idle,
       },
       {
         x: 0,
@@ -42,7 +42,7 @@ class BirdSelectScreen implements IScreen {
         r: 60,
         unlocked: game.unlockedBirds.indexOf(3) !== -1,
         id: 3,
-        sprite: images.purpleBird,
+        sprite: images.bird3_idle,
       },
     ];
   }
@@ -122,7 +122,9 @@ class BirdSelectScreen implements IScreen {
             selected = new Bird(
               0,
               "birdImg",
-              bird.sprite,
+              images.bird0_idle,
+              images.bird0_drag,
+              images.bird0_fly,
               35,
               1.0,
               1.0,
@@ -133,7 +135,9 @@ class BirdSelectScreen implements IScreen {
             selected = new Bird(
               1,
               "bigBird",
-              bird.sprite,
+              images.bird1_idle,
+              images.bird1_drag,
+              images.bird1_fly,
               45,
               1.3,
               1.4,
@@ -144,7 +148,9 @@ class BirdSelectScreen implements IScreen {
             selected = new Bird(
               2,
               "iceBird",
-              bird.sprite,
+              images.bird2_idle,
+              images.bird2_drag,
+              images.bird2_fly,
               30,
               0.8,
               0.7,
@@ -155,7 +161,9 @@ class BirdSelectScreen implements IScreen {
             selected = new Bird(
               3,
               "purpleBird",
-              bird.sprite,
+              images.bird3_idle,
+              images.bird3_drag,
+              images.bird3_fly,
               40,
               1.6,
               1.2,
@@ -167,7 +175,9 @@ class BirdSelectScreen implements IScreen {
             selected = new Bird(
               0,
               "birdImg",
-              bird.sprite,
+              images.bird0_idle,
+              images.bird0_drag,
+              images.bird0_fly,
               35,
               1.0,
               1.0,

@@ -4,7 +4,7 @@
 class Player extends Entity implements IScreen {
   private bird: Bird;
   private abilityUsed: boolean = false;
-
+  private state: "idle" | "drag" | "fly" = "idle";
   public isClone: boolean = false;
 
   radius: number;
@@ -29,7 +29,7 @@ class Player extends Entity implements IScreen {
     const position = createVector(272, height - 250);
 
     super(
-      bird.sprite,
+      bird.spriteIdle,
       position.x,
       position.y,
       bird.radius * 2,
@@ -53,6 +53,7 @@ class Player extends Entity implements IScreen {
     const d = dist(mouseX, mouseY, this.position.x, this.position.y);
     if (d < this.radius) {
       this.isDragging = true;
+      this.state = "drag";
     }
   }
 
@@ -77,6 +78,7 @@ class Player extends Entity implements IScreen {
 
     this.isDragging = false;
     this.isLaunched = true;
+    this.state = "fly";
 
     // Here you can adjust the speed of the bird
     const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.3);
@@ -133,6 +135,10 @@ class Player extends Entity implements IScreen {
 
     if (!this.isLaunched) return;
 
+    if (!this.isLaunched && !this.isDragging) {
+      this.state = "idle";
+    }
+ 
     this.velocity.y += this.gravity;
     this.velocity.mult(this.dragDamping);
     this.position.add(this.velocity);
@@ -149,18 +155,28 @@ class Player extends Entity implements IScreen {
     }
   }
 
-  draw() {
-    // Draw slingshot band while dragging
-    if (this.isDragging) {
-      push();
-      stroke(112, 0, 0);
-      strokeWeight(6);
-      line(this.startPos.x, this.startPos.y, this.position.x, this.position.y);
-      pop();
-    }
-
-    super.draw();
+ draw() {
+  // Rita slingshot band
+  if (this.isDragging) {
+    push();
+    stroke(112, 0, 0);
+    strokeWeight(6);
+    line(this.startPos.x, this.startPos.y, this.position.x, this.position.y);
+    pop();
   }
+
+  // Välj sprite baserat på state
+  let img;
+  if (this.state === "idle") img = this.bird.spriteIdle;
+  else if (this.state === "drag") img = this.bird.spriteDrag;
+  else img = this.bird.spriteFly;
+
+  // Rita fågeln
+  push();
+  imageMode(CENTER);
+  image(img, this.position.x, this.position.y, this.size.x, this.size.y);
+  pop();
+}
 
   reset() {
     this.position.set(this.startPos);
@@ -179,14 +195,17 @@ class Player extends Entity implements IScreen {
 
       const smallBird = new Player(
         new Bird(
-          this.bird.id,
-          this.bird.name,
-          this.bird.sprite,
-          this.bird.radius * 0.6,
-          this.bird.power * 0.7,
-          this.bird.weight * 0.7,
-          "none", 
-        ),
+  this.bird.id,
+  this.bird.name,
+  this.bird.spriteIdle,
+  this.bird.spriteDrag,
+  this.bird.spriteFly,
+  this.bird.radius * 0.6,
+  this.bird.power * 0.7,
+  this.bird.weight * 0.7,
+  "none"
+)
+        
       );
       smallBird.isClone = true;
       smallBird.position = this.position.copy();

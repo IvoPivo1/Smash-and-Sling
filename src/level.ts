@@ -113,7 +113,7 @@ class Level implements IScreen {
     for (let i = 0; i < game.selectedBirds.length; i++) {
       const b = game.selectedBirds[i];
       image(
-        b.sprite,
+        b.spriteIdle,
         80 + i * 60, // X
         height - 120, // Y
         40,

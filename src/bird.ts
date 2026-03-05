@@ -1,7 +1,9 @@
 class Bird {
   public id: number;
   public name: string;
-  public sprite: p5.Image;
+  public spriteIdle: p5.Image;
+  public spriteDrag: p5.Image;
+  public spriteFly: p5.Image;
   public radius: number;
   public power: number;
   public weight: number;
@@ -10,15 +12,19 @@ class Bird {
   constructor(
     id: number,
     name: string,
-    sprite: p5.Image,
+    spriteIdle: p5.Image,
+    spriteDrag: p5.Image,
+    spriteFly: p5.Image,
     radius: number,
     power: number,
     weight: number,
-    ability: string,
+    ability: string
   ) {
     this.id = id;
     this.name = name;
-    this.sprite = sprite;
+    this.spriteIdle = spriteIdle;
+    this.spriteDrag = spriteDrag;
+    this.spriteFly = spriteFly;
     this.radius = radius;
     this.power = power;
     this.weight = weight;
