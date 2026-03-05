@@ -43,7 +43,7 @@ class Player extends Entity implements IScreen {
     this.dragPos = position.copy();
   }
 
-  public onCollision(other: Entity): void {
+  public onCollision(_other: Entity): void {
     // this.destroy();
   }
 

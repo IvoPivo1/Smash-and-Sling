@@ -65,7 +65,7 @@ class LevelSelect implements IScreen {
       return;
     }
   }
-  private isUnlocked(id: number) {
+  private isUnlocked(_id: number) {
     return true;
   }
 
