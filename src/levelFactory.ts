@@ -217,7 +217,54 @@ class LevelFactory {
 
   // level 8
   private levelEight(): Level {
-    const entities: Entity[] = [new Player(game.selectedBirds[0])];
+    const entities: Entity[] = [
+      new Player(game.selectedBirds[0]),
+
+      // vänster, 1 pig
+      new Pig(820, 620, random(pigList)),
+
+      new BlackPole(720, 680, 12, 200, 0),
+
+      new Pole(760, 700, 12, 180, 0),
+      new Pole(880, 700, 12, 180, 0),
+      new Pole(760, 700, 132, 12),
+
+      // Mitten, 4 pigs
+      new Pig(1080, 700, random(pigList)),
+      new Pig(1160, 700, random(pigList)),
+      new Pig(1115, 600, random(pigList)),
+      new Pig(1115, 480, random(pigList)),
+
+      new BlackPole(950, 660, 12, 240, 0),
+
+      // första våning, Mitten
+      new Pole(980, 740, 12, 260, 0),
+      new Pole(1060, 740, 12, 260, 0),
+      new Pole(1140, 740, 12, 260, 0),
+      new Pole(1220, 740, 12, 260, 0),
+      new Pole(980, 740, 252, 12),
+
+      new BlackPole(1250, 660, 12, 240, 0),
+
+      // andra våning, Mitten
+      new Pole(1040, 620, 12, 190, 0),
+      new Pole(1180, 620, 12, 190, 0),
+      new Pole(1040, 620, 152, 12),
+
+      // tredje våning, Mitten
+      new Pole(1080, 520, 12, 100, 0),
+      new Pole(1140, 520, 12, 100, 0),
+      new Pole(1080, 520, 72, 12),
+
+      // Höger, 1 pig
+      new Pig(1320, 700, random(pigList)),
+
+      new Pole(1270, 740, 12, 260, 0),
+      new Pole(1340, 740, 12, 260, 0),
+      new Pole(1270, 740, 70, 12),
+
+      new BlackPole(1360, 680, 12, 200, 0),
+    ];
 
     return new Level(entities, 7);
   }
