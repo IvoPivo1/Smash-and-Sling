@@ -10,6 +10,7 @@ Projektet använder sig av [Typescript](https://www.typescriptlang.org/) och [p5
 OBS: Undvik [DOM funktionerna i p5.js](https://p5js.org/reference/#group-DOM) eftersom de **inte** är canvasspecifika och kommer inte fungera som ni förväntar er.
 
 ## Utveckling
+oodfsd
 
 ### Installation
 
