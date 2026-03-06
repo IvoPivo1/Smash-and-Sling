@@ -5,7 +5,7 @@ let music: { mystery: p5.SoundFile };
 let sounds: {
   blue: p5.SoundFile;
   green:p5.SoundFile;
-  purple:p5.SoundFile;¨
+  purple:p5.SoundFile;
   launch:p5.SoundFile
 
 }
