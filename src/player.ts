@@ -83,12 +83,15 @@ class Player extends Entity implements IScreen {
     // Here you can adjust the speed of the bird
     const force = p5.Vector.sub(this.startPos, this.dragPos).mult(0.3);
     this.velocity.add(force);
+    if(this.bird.id === 0){
+      sounds.launch.play();
+    }
   }
 
   private handleAbilities() {
     if (!this.abilityUsed && this.bird.ability === "dash") {
       if (mouseIsPressed) {
-
+        sounds.blue.play();
         game.dashTrials.push(
           new DashTrail(this.position.x, this.position.y, this.velocity, color(255, 255, 100)),
         );
@@ -101,6 +104,7 @@ class Player extends Entity implements IScreen {
 
     if (!this.abilityUsed && this.bird.ability === "split") {
       if (mouseIsPressed) {
+        sounds.purple.play();
         this.splitIntoThree();
         this.abilityUsed = true;
         this.alive = false;
@@ -110,6 +114,7 @@ class Player extends Entity implements IScreen {
 
     if (!this.abilityUsed && this.bird.ability === "bomb") {
       if (mouseIsPressed) {
+        sounds.green.play();
         this.explode();
         this.abilityUsed = true;
         this.alive = false;
