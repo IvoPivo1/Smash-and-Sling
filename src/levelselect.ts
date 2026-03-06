@@ -78,7 +78,7 @@ class LevelSelect implements IScreen {
       else fill(130);
 
       noStroke();
-      circle(x + (i - 1) * 16, y, 10);
+      circle(x + (i - 1) * 22, y, 15);
     }
   }
 
