@@ -2,6 +2,13 @@
 let game: Game;
 let pigList: p5.Image[];
 let music: { mystery: p5.SoundFile };
+let sounds: {
+  blue: p5.SoundFile;
+  green:p5.SoundFile;
+  purple:p5.SoundFile;¨
+  launch:p5.SoundFile
+
+}
 
 let images: {
   pink: p5.Image;
@@ -46,7 +53,16 @@ let soundOn: boolean = true;
  * sound files, images etc...
  */
 function preload() {
-  music = { mystery: loadSound("./assets/music/background.mp3") };
+  music = { mystery: loadSound("./assets/music/background.mp3") 
+  };
+  sounds = {
+    blue:loadSound("./assets/music/blue.mp3"),
+    green:loadSound("./assets/music/green.mp3"),
+    purple:loadSound("./assets/music/purple.mp3"),
+    launch:loadSound("./assets/music/launch.mp3")
+  };
+
+
 
   images = {
     pink: loadImage("./assets/images/pink.png"),
